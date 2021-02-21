@@ -21,7 +21,7 @@ const Tab = ({ active, click, svg, children }) => {
         ></div>
       </label>
       {svg}
-      <span className="text-sm hidden xl:inline-block font-medium text-dark-grey">
+      <span className="text-sm hidden md:inline-block font-medium text-dark-grey">
         {children}
       </span>
     </div>

@@ -23,7 +23,7 @@ const Toggle = (props) => {
               }`
             : "bg-white"
         } ${
-          size === "md" ? "w-3 h-3" : "w-4 h-4"
+          size === "md" ? "w-2.5 h-2.5" : "w-4 h-4"
         } rounded-full transition-all duration-500 ease-in-out`}
       ></div>
     </div>
