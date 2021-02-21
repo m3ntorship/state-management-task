@@ -12,8 +12,9 @@ export default function TempAllPosts({ posts, setPerPage, perPage }) {
           className="hover:border-grey-shd2 focus:text-dark-grey focus:border-dark border border-grey-shd5 py-2.5 px-m text-sm font-normal text-grey-shd1 w-64 md:w-96 rounded-md focus:outline-none"
           type="number"
           value={perPage}
+          
           onChange={inputHandler}
-          data-testid="inputField"
+          data-testid="perPageSelector"
         />
       </div>
       {posts.map((post) => (
