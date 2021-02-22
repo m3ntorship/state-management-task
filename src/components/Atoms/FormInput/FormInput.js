@@ -15,7 +15,6 @@ const FormInput = (props) => {
     prefix = false,
     prefixDrop = false,
     placeholder = "What do you want to ask about?",
-    clicked,
   } = props;
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
@@ -48,7 +47,6 @@ const FormInput = (props) => {
           variant={variant}
           disabled={disabled}
           click={showIconHandler}
-          click={clicked}
           setHover={setHover}
           placeholder={placeholder}
         />

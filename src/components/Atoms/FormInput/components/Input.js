@@ -1,4 +1,5 @@
 import React from "react";
+import conditionalProperties from "classnames";
 
 const Input = (props) => {
   const {
@@ -12,27 +13,25 @@ const Input = (props) => {
     setHover,
     placeholder,
   } = props;
+
+  const inputClasses = conditionalProperties(
+    "w-33xl py-2.5 pr-m text-sm text-grey-shd1 font-normal border rounded-md hover:border-grey-shd2 focus:text-dark-grey focus:outline-none",
+    {
+      "pl-9": leftIcon && !rightIcon,
+      "pl-m": (leftIcon && rightIcon) || (!leftIcon && !prefixDrop),
+      "pl-3xl": !leftIcon && prefix,
+      "pl-4xl": !leftIcon && prefixDrop,
+      "border-error focus:border-error": variant === "error",
+      "border-success focus:border-success": variant === "success",
+      "border-grey-shd5 focus:border-dark":
+        variant === "error" && variant === "success",
+      "pointer-events-none opacity-50 border border-grey-shd5": disabled,
+    }
+  );
+
   return (
     <input
-      className={`w-33xl py-2.5 pr-m ${
-        leftIcon
-          ? !rightIcon
-            ? "pl-9"
-            : "pl-m"
-          : prefix
-          ? "pl-3xl"
-          : prefixDrop
-          ? "pl-4xl"
-          : "pl-m"
-      } text-sm text-grey-shd1 font-normal border rounded-md hover:border-grey-shd2 focus:text-dark-grey ${
-        variant === "error"
-          ? "border-error focus:border-error"
-          : variant === "success"
-          ? "border-success focus:border-success"
-          : "border-grey-shd5 focus:border-dark"
-      } focus:outline-none ${
-        disabled ? "pointer-events-none opacity-50 border border-grey-shd5" : ""
-      }`}
+      className={inputClasses}
       type="text"
       placeholder={placeholder}
       onClick={click}
