@@ -49,6 +49,7 @@ const Variants = ({ variant, focus, rightIcon, leftIcon, withLabel }) => {
         </svg>
       ) : (
         <svg
+          data-testid="nile-error-icon"
           className={`${
             focus
               ? `block absolute ${withLabel ? "top-10" : "top-4"} ${

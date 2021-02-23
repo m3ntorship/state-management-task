@@ -14,6 +14,7 @@ const FormInput = (props) => {
     disabled = false,
     prefix = false,
     prefixDrop = false,
+    clickHandler = () => {},
     placeholder = "What do you want to ask about?",
   } = props;
   const [focus, setFocus] = useState(false);
@@ -23,11 +24,13 @@ const FormInput = (props) => {
     e.stopPropagation();
   };
   const showIconHandler = (e) => {
+    clickHandler();
     setFocus(true);
     e.stopPropagation();
   };
+
   return (
-    <div className="flex" onClick={hideIconHandler}>
+    <div data-testid="nile-input-wrapper" className="flex" onClick={hideIconHandler}>
       <form className="relative">
         {withLabel ? (
           <label className="text-xs text-dark-grey font-light mb-xs block">

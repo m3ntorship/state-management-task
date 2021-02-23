@@ -12,7 +12,7 @@ const PostEdit = () => {
     <div className="flex justify-center relative">
       <div className="misc-box bg-white shadow-dark rounded-md flex items-center p-m mb-10">
         <Avatar size="md" />
-        <FormInput withLabel={false} clicked={inputHandler} />
+        <FormInput withLabel={false} clickHandler={inputHandler} />
       </div>
       {active ? (
         <div

@@ -31,6 +31,8 @@ const Input = (props) => {
 
   return (
     <input
+      data-variant={variant}
+      data-testid="nile-input"
       className={inputClasses}
       type="text"
       placeholder={placeholder}
