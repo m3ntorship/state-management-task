@@ -19,8 +19,14 @@ const Button = (props) => {
   });
   const buttonWithoutOnlyIcon = conditionalProperties({
     "py-xs px-l text-base font-medium": size === "md",
+    "py-xs pr-5 pl-l": size === "md" && leftIcon,
+    "py-xs pr-l pl-5": size === "md" && rightIcon,
     "py-1.5 px-m text-sm font-medium": size === "sm",
+    "py-1.5 pr-2.5 pl-m": size === "sm" && leftIcon,
+    "py-1.5 pr-m pl-2.5": size === "sm" && rightIcon,
     "py-3.5 px-xl text-md font-bold": size === "lg",
+    "py-3.5 pr-lv pl-xl": size === "lg" && leftIcon,
+    "py-3.5 pr-xl pl-l": size === "lg" && rightIcon,
   });
   const buttonClasses = conditionalProperties(
     "rounded-full focus:outline-none focus:border-2 focus:border-dark-btnFocus",

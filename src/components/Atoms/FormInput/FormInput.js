@@ -19,6 +19,7 @@ const FormInput = (props) => {
   } = props;
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
+  const [inputVal, setInputVal] = useState("");
   const hideIconHandler = (e) => {
     setFocus(false);
     e.stopPropagation();
@@ -55,6 +56,8 @@ const FormInput = (props) => {
         click={showIconHandler}
         setHover={setHover}
         placeholder={placeholder}
+        setInputVal={setInputVal}
+        inputVal={inputVal}
       />
       <Variants
         variant={variant}
@@ -62,6 +65,7 @@ const FormInput = (props) => {
         rightIcon={rightIcon}
         leftIcon={leftIcon}
         withLabel={withLabel}
+        setInputVal={setInputVal}
       />
       <SideIcons
         rightIcon={rightIcon}

@@ -1,8 +1,9 @@
 import React from "react";
 import conditionalProperties from "classnames";
 
-const Variants = ({ variant, focus, rightIcon, leftIcon, withLabel }) => {
-  const SvgIcon = conditionalProperties("absolute block", {
+const Variants = (props) => {
+  const { variant, focus, rightIcon, leftIcon, withLabel, setInputVal } = props;
+  const SvgIcon = conditionalProperties("absolute block cursor-pointer", {
     "top-9": withLabel,
     "top-3": !withLabel,
     "right-10": rightIcon && !leftIcon,
@@ -47,6 +48,7 @@ const Variants = ({ variant, focus, rightIcon, leftIcon, withLabel }) => {
         <svg
           data-testid="nile-error-icon"
           className={SvgIcon}
+          onClick={() => setInputVal("")}
           width="16"
           height="16"
           viewBox="0 0 16 16"

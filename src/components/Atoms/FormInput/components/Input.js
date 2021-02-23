@@ -12,6 +12,8 @@ const Input = (props) => {
     click,
     setHover,
     placeholder,
+    setInputVal,
+    inputVal,
   } = props;
 
   const inputClasses = conditionalProperties(
@@ -37,6 +39,8 @@ const Input = (props) => {
       type="text"
       placeholder={placeholder}
       onClick={click}
+      onChange={(e) => setInputVal(e.target.value)}
+      value={inputVal}
       onMouseEnter={() => (leftIcon ? setHover(true) : null)}
       onMouseLeave={() => (leftIcon ? setHover(false) : null)}
     />
