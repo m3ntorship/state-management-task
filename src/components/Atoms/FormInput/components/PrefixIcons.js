@@ -1,22 +1,29 @@
 import React from "react";
+import conditionalProperties from "classnames";
 
 const PrefixIcons = ({ prefix, prefixDrop, withLabel }) => {
-  const prefixSpan = (
-    <span
-      className={`absolute ${
-        withLabel ? "top-10" : "top-4"
-      } left-3 opacity-50 font-normal text-sm text-grey`}
-    >
-      +20
-    </span>
+  const spanClasses = conditionalProperties(
+    "absolute left-3 opacity-50 font-normal text-sm text-grey",
+    {
+      "top-9": withLabel,
+      "top-3": !withLabel,
+    }
   );
-  const devider = (
-    <div
-      className={`absolute ${
-        withLabel ? "top-10" : "top-4"
-      } left-3 opacity-50 w-px h-4 bg-grey-shd6 ${prefix ? "ml-xl" : "ml-10"}`}
-    ></div>
+  const divClasses = conditionalProperties(
+    "absolute left-3 opacity-50 w-px h-4 bg-grey-shd6",
+    {
+      "top-9": withLabel,
+      "top-3": !withLabel,
+      "ml-xl": prefix,
+      "ml-10": !prefix,
+    }
   );
+  const svgClasses = conditionalProperties("absolute left-9 opacity-50", {
+    "top-9": withLabel,
+    "top-3": !withLabel,
+  });
+  const prefixSpan = <span className={spanClasses}>+20</span>;
+  const devider = <div className={divClasses}></div>;
   return (
     <>
       {prefix ? (
@@ -29,9 +36,7 @@ const PrefixIcons = ({ prefix, prefixDrop, withLabel }) => {
         <div className="prefix-container">
           {prefixSpan}
           <svg
-            className={`absolute ${
-              withLabel ? "top-10" : "top-4"
-            } left-9 opacity-50`}
+            className={svgClasses}
             width="16"
             height="16"
             viewBox="0 0 16 16"

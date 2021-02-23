@@ -1,12 +1,24 @@
 import React from "react";
+import conditionalProperties from "classnames";
 
 const SideIcons = ({ rightIcon, leftIcon, hover, focus, withLabel }) => {
+  const rightSvgClasses = conditionalProperties("absolute right-3", {
+    "top-9": withLabel,
+    "top-3": !withLabel,
+  });
+  const leftSvgIcon = conditionalProperties("absolute left-3", {
+    "top-9": withLabel,
+    "top-3": !withLabel,
+    "opacity-70": hover,
+    "opacity-50": !hover && !focus,
+    "opacity-100": focus,
+  });
   return (
     <>
       {rightIcon ? (
         !leftIcon ? (
           <svg
-            className={`absolute ${withLabel ? "top-10" : "top-4"} right-3`}
+            className={rightSvgClasses}
             width="16"
             height="16"
             viewBox="0 0 16 16"
@@ -23,9 +35,7 @@ const SideIcons = ({ rightIcon, leftIcon, hover, focus, withLabel }) => {
       {leftIcon ? (
         !rightIcon ? (
           <svg
-            className={`absolute ${withLabel ? "top-10" : "top-4"} left-3 ${
-              hover ? "opacity-70" : "opacity-50"
-            } ${focus ? "opacity-100" : "opacity-50"}`}
+            className={leftSvgIcon}
             width="16"
             height="16"
             viewBox="0 0 16 16"

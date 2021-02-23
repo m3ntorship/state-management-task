@@ -30,44 +30,46 @@ const FormInput = (props) => {
   };
 
   return (
-    <div data-testid="nile-input-wrapper" className="flex" onClick={hideIconHandler}>
-      <form className="relative">
-        {withLabel ? (
-          <label className="text-xs text-dark-grey font-light mb-xs block">
-            Label
-          </label>
-        ) : null}
-        <PrefixIcons
-          prefix={prefix}
-          prefixDrop={prefixDrop}
-          withLabel={withLabel}
-        />
-        <Input
-          leftIcon={leftIcon}
-          rightIcon={rightIcon}
-          prefix={prefix}
-          prefixDrop={prefixDrop}
-          variant={variant}
-          disabled={disabled}
-          click={showIconHandler}
-          setHover={setHover}
-          placeholder={placeholder}
-        />
-        <Variants
-          variant={variant}
-          focus={focus}
-          rightIcon={rightIcon}
-          leftIcon={leftIcon}
-          withLabel={withLabel}
-        />
-        <SideIcons
-          rightIcon={rightIcon}
-          leftIcon={leftIcon}
-          hover={hover}
-          focus={focus}
-          withLabel={withLabel}
-        />
-      </form>
+    <div
+      data-testid="nile-input-wrapper"
+      className="flex relative"
+      onClick={hideIconHandler}
+    >
+      {withLabel ? (
+        <label className="text-xs text-dark-grey font-light mb-xs block">
+          Label
+        </label>
+      ) : null}
+      <PrefixIcons
+        prefix={prefix}
+        prefixDrop={prefixDrop}
+        withLabel={withLabel}
+      />
+      <Input
+        leftIcon={leftIcon}
+        rightIcon={rightIcon}
+        prefix={prefix}
+        prefixDrop={prefixDrop}
+        variant={variant}
+        disabled={disabled}
+        click={showIconHandler}
+        setHover={setHover}
+        placeholder={placeholder}
+      />
+      <Variants
+        variant={variant}
+        focus={focus}
+        rightIcon={rightIcon}
+        leftIcon={leftIcon}
+        withLabel={withLabel}
+      />
+      <SideIcons
+        rightIcon={rightIcon}
+        leftIcon={leftIcon}
+        hover={hover}
+        focus={focus}
+        withLabel={withLabel}
+      />
     </div>
   );
 };

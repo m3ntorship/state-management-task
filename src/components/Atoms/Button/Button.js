@@ -20,10 +20,10 @@ const Button = (props) => {
   const buttonWithoutOnlyIcon = conditionalProperties({
     "py-xs px-l text-base font-medium": size === "md",
     "py-1.5 px-m text-sm font-medium": size === "sm",
-    "py-m px-xl text-md font-bold": size === "lg",
+    "py-3.5 px-xl text-md font-bold": size === "lg",
   });
   const buttonClasses = conditionalProperties(
-    "rounded-full focus:outline-none ml-4 mt-4 focus:border-2 focus:border-dark-btnFocus",
+    "rounded-full focus:outline-none focus:border-2 focus:border-dark-btnFocus",
     {
       "bg-white hover:bg-grey-bg border border-primary focus:border-primary text-primary":
         variant === "secondary",

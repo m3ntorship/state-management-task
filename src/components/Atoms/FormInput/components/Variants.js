@@ -1,17 +1,19 @@
 import React from "react";
+import conditionalProperties from "classnames";
 
 const Variants = ({ variant, focus, rightIcon, leftIcon, withLabel }) => {
+  const SvgIcon = conditionalProperties("absolute block", {
+    "top-9": withLabel,
+    "top-3": !withLabel,
+    "right-10": rightIcon && !leftIcon,
+    "right-3": !rightIcon || (!rightIcon && leftIcon),
+    hidden: !focus,
+  });
   return (
     <>
       {variant === "error" ? (
         <svg
-          className={`${
-            focus
-              ? `block absolute ${withLabel ? "top-10" : "top-4"} ${
-                  rightIcon ? (!leftIcon ? "right-10" : "right-3") : "right-3"
-                }`
-              : "hidden"
-          }`}
+          className={SvgIcon}
           width="16"
           height="16"
           viewBox="0 0 16 16"
@@ -29,13 +31,7 @@ const Variants = ({ variant, focus, rightIcon, leftIcon, withLabel }) => {
         </svg>
       ) : variant === "success" ? (
         <svg
-          className={`${
-            focus
-              ? `block absolute ${withLabel ? "top-10" : "top-4"} ${
-                  rightIcon ? (!leftIcon ? "right-10" : "right-3") : "right-3"
-                }`
-              : "hidden"
-          }`}
+          className={SvgIcon}
           width="16"
           height="16"
           viewBox="0 0 16 16"
@@ -50,13 +46,7 @@ const Variants = ({ variant, focus, rightIcon, leftIcon, withLabel }) => {
       ) : (
         <svg
           data-testid="nile-error-icon"
-          className={`${
-            focus
-              ? `block absolute ${withLabel ? "top-10" : "top-4"} ${
-                  rightIcon ? (!leftIcon ? "right-10" : "right-3") : "right-3"
-                }`
-              : "hidden"
-          }`}
+          className={SvgIcon}
           width="16"
           height="16"
           viewBox="0 0 16 16"

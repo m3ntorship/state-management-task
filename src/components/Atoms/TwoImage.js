@@ -13,7 +13,12 @@ function TwoImage(props) {
       <div className=" grid gap-x-2 gap-y-4 mb-m rounded-md relative">
         <div className=" flex flex-col mb-m relative rounded-md overflow-hidden md:flex-row gap-2">
           <div className=" relative rounded-md overflow-hidden">
-            <img src={postMan} alt="post" className=" relative md:w-72" width="200px" />
+            <img
+              src={postMan}
+              alt="post"
+              className=" relative md:w-72"
+              width="200px"
+            />
             <div className="font-normal text-sm hidden text-dark md:flex items-center py-xxsv px-xsvv bg-white bg-opacity-40 rounded-sm absolute bottom-4 left-4">
               {captionOfImage}
             </div>

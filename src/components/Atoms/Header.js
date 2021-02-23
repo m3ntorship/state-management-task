@@ -5,7 +5,11 @@ const Header = (props) => {
   return (
     <div className="flex justify-between pb-s border-b w-full border-grey-shd6 mb-m">
       <div className="flex">
-        <img src={srcOfUserImage} alt="filled avatar" className="w-10 h-10 mr-m" />
+        <img
+          src={srcOfUserImage}
+          alt="filled avatar"
+          className="w-10 h-10 mr-m"
+        />
         <div>
           <h4 className="font-medium text-sm text-dark">{name}</h4>
           <span className="font-light text-sm text-dark-grey">{date}</span>

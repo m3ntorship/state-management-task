@@ -33,14 +33,13 @@ const ImagePost = ({ alpha, file }) => {
   // States
   const [fileUrl, setFileUrl] = useState("");
   const { response, progress, uploaded } = useCloudinaryUploader(file);
-  
+
   // Transfrom images to  base64
   useEffect(() => {
     const fileReader = new FileReader();
     fileReader.readAsDataURL(file);
     fileReader.addEventListener("load", function (e) {
       setFileUrl(e.target.result);
-      
     });
   }, [file]);
   // Upload Image to server
