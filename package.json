@@ -17,15 +17,15 @@
     "build": "craco build",
     "test": "craco test",
     "lint": "eslint --ext .jsx --ext .js src/",
-    "lint:css": "stylelint src/**/*.css"
+    "lint:css": "stylelint src/css/.css"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx}": [
+    "src/.{js,jsx}": [
       "prettier --write",
       "eslint --fix src/",
       "git add"
     ],
-    "*.css": "stylelint --cache --fix",
+    "src/css/.css": "stylelint --cache --fix",
     "*.{js,css,md}": "prettier --write"
   },
   "husky": {
