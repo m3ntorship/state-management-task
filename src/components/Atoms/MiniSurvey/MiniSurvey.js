@@ -23,12 +23,12 @@ function MiniSurvey(props) {
           />
         </div>
       </div>
-      {MiniSurveyOptions.map((MiniSurveyOption) => {
+      {MiniSurveyOptions.map((MiniSurveyOption) => (
         <div key={MiniSurveyOption}>
           <h3 className="text-sm font-normal text-dark-grey mb-xs w-full">
             {MiniSurveyOption.optionName}
           </h3>
-          {MiniSurveyOption.optionsInpVals.map((optionsInpVal) => {
+          {MiniSurveyOption.optionsInpVals.map((optionsInpVal) => (
             <div
               key={optionsInpVal}
               className="bg-grey-bg hover:bg-grey-shd6 flex items-center w-37xl p-xs mb-xs rounded-md"
@@ -51,10 +51,10 @@ function MiniSurvey(props) {
                 />
               </svg>
               <h3 className="text-sm font-normal text-dark">{optionsInpVal}</h3>
-            </div>;
-          })}
-        </div>;
-      })}
+            </div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 }
