@@ -3,11 +3,10 @@ import React from "react";
 function GroupOfFourOptionResult() {
   return (
     <div>
-
-<div className="mb-m w-full">
-      <h3 className="text-md text-dark font-normal">
-        Which is easier to learn?
-      </h3>
+      <div className="mb-m w-full">
+        <h3 className="text-md text-dark font-normal">
+          Which is easier to learn?
+        </h3>
       </div>
       <div className=" bg-primary-shd7 flex justify-between items-center w-40 p-xs mb-xs rounded-md">
         <div className="flex items-center">

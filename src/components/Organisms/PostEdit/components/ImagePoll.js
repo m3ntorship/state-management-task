@@ -28,6 +28,4 @@ const ImagePoll = () => {
   );
 };
 
-
-
 export default ImagePoll;

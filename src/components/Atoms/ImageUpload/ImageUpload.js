@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const ImageUpload = ({ changed }) => {
   return (
     <div>
@@ -41,7 +40,5 @@ const ImageUpload = ({ changed }) => {
     </div>
   );
 };
-
-
 
 export default ImageUpload;
