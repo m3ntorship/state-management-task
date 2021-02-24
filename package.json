@@ -18,7 +18,8 @@
     "test": "craco test",
     "lint": "eslint --ext .jsx --ext .js src/",
     "lint:css": "stylelint src/css/.css",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "lint-staged": "lint-staged"
   },
   "lint-staged": {
     "src/.{js,jsx}": [
