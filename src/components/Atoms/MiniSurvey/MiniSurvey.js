@@ -28,7 +28,7 @@ function MiniSurvey(props) {
         </div>
       </div>
       {MiniSurveyOptions.map((MiniSurveyOption) => (
-        <div key={MiniSurveyOption}>
+        <div key={MiniSurveyOption.optionName}>
           <h3 className="text-sm font-normal text-dark-grey mb-xs w-full">
             {MiniSurveyOption.optionName}
           </h3>
@@ -39,6 +39,7 @@ function MiniSurvey(props) {
                 alpha={letter}
                 index={index}
                 optionsInpVal={optionsInpVal}
+                key={optionsInpVal}
               />
             );
           })}

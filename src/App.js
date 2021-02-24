@@ -5,6 +5,7 @@ import ViewImagePoll from './components/Organisms/ImagePoll/ImagePoll';
 import ViewImagePollResult from './components/Organisms/ViewImagePollResult/ViewImagePollResult';
 import ViewTextPoll from './components/Organisms/ViewTextPoll/ViewTextPoll';
 import ViewMiniSurvey from './components/Organisms/ViewMiniSurvey/ViewMiniSurvey';
+import ViewTextPollReaults from './components/Organisms/ViewTextPollReaults/ViewTextPollReaults';
 
 
 const  App = () => {
@@ -16,6 +17,7 @@ const  App = () => {
       <ViewImagePollResult/>
       <ViewTextPoll/>
       <ViewMiniSurvey/>
+      <ViewTextPollReaults/>
     </>
   );
 }

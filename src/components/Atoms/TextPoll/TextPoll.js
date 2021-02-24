@@ -15,6 +15,7 @@ function TextPoll({ favourites }) {
             optionsInpVal={optionsInpVal}
             index={index}
             alpha={letter}
+            key={letter}
           />
         );
       })}
