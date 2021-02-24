@@ -4,7 +4,7 @@ import OptionGroupResult from "../../Atoms/OptionGroupResult/OptionGroupResult";
 const TextPollReaults = ({ favourites }) => {
   favourites = [
     { inptField: "red", progress: 20 },
-    { inptField: "White", progress: 50},
+    { inptField: "White", progress: 50 },
     { inptField: "pink", progress: 30 },
   ];
   let maxProgress = Math.max.apply(
@@ -22,7 +22,15 @@ const TextPollReaults = ({ favourites }) => {
     <>
       {favourites.map((option, index) => {
         const letter = letters[index];
-     return  <OptionGroupResult key={`OptionGroupResult_${index}`} option={option} index={index} maxProgress={maxProgress} alpha={letter}/>
+        return (
+          <OptionGroupResult
+            key={`OptionGroupResult_${index}`}
+            option={option}
+            index={index}
+            maxProgress={maxProgress}
+            alpha={letter}
+          />
+        );
       })}
     </>
   );

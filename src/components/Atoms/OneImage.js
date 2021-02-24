@@ -1,12 +1,7 @@
 import React from "react";
 import CircleProgress from "../Atoms/CircleProgress/CircleProgress";
 const OneImage = (props) => {
-  const {
-    casePost = "result",
-    caption,
-    image,
-    label,
-  } = props;
+  const { casePost = "result", caption, image, label } = props;
 
   return (
     <>
@@ -25,7 +20,7 @@ const OneImage = (props) => {
             {label}
           </div>
           {casePost === "result" ? (
-           <CircleProgress progres={30}/>
+            <CircleProgress progres={30} />
           ) : (
             <div className="absolute bottom-4 right-4 flex">
               <button className="p-xs bg-error rounded-full mr-m">

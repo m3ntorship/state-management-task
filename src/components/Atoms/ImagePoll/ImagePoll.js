@@ -1,7 +1,7 @@
 import React from "react";
 import imagePost from "../../../img/post-img.jpg";
 const ImagePoll = (props) => {
-  const { image=imagePost, label = "image label" } = props;
+  const { image = imagePost, label = "image label" } = props;
   return (
     <div className="grid grid-img-upload w-37xl gap-2 gap-x-2 gap-y-4 mb-m">
       <div className=" relative rounded-md overflow-hidden">

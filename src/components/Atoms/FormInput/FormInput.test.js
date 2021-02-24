@@ -51,7 +51,7 @@ describe("FromInput", () => {
       expect(input).toBeInTheDocument();
       expect(input).toHaveAttribute("data-variant", "error");
     });
-    
+
     it("renders FormInput with variant [default]", () => {
       const { queryByTestId } = render(<FormInput />);
 

@@ -1,7 +1,7 @@
 import React from "react";
 import imagePost from "../../../img/Frame 145.png";
 import OptionGroupResult from "../../Atoms/OptionGroupResult/OptionGroupResult";
-const  MiniSurveyResults=(props)=> {
+const MiniSurveyResults = (props) => {
   const Options = [
     {
       id: "1",
@@ -39,29 +39,36 @@ const  MiniSurveyResults=(props)=> {
         </div>
       </div>
 
-      {MiniSurveyOptions.map((MiniSurveyOption,index) => {
-           let maxProgress = Math.max.apply(
-            Math,
-            MiniSurveyOption.optionsInpVals.map(function (o) {
-              return o.progress;
-            })
-          );
-         
-     return   <div key={MiniSurveyOption.optionName}>
-            
-          <h3 className="text-sm font-normal text-dark mb-xs w-full">
-            {MiniSurveyOption.optionName}
-          </h3>
-          {MiniSurveyOption.optionsInpVals.map((optionsInpVal, index) => {
-            const letter = letters[index];
-            return (
-             <OptionGroupResult key={`OptionGroupResult_${index}_`} option={optionsInpVal} index={index} maxProgress={maxProgress} alpha={letter}/>
-            );
-          })}
-        </div>
-})}
+      {MiniSurveyOptions.map((MiniSurveyOption) => {
+        let maxProgress = Math.max.apply(
+          Math,
+          MiniSurveyOption.optionsInpVals.map(function (o) {
+            return o.progress;
+          })
+        );
+
+        return (
+          <div key={MiniSurveyOption.optionName}>
+            <h3 className="text-sm font-normal text-dark mb-xs w-full">
+              {MiniSurveyOption.optionName}
+            </h3>
+            {MiniSurveyOption.optionsInpVals.map((optionsInpVal, index) => {
+              const letter = letters[index];
+              return (
+                <OptionGroupResult
+                  key={`OptionGroupResult_${index}_`}
+                  option={optionsInpVal}
+                  index={index}
+                  maxProgress={maxProgress}
+                  alpha={letter}
+                />
+              );
+            })}
+          </div>
+        );
+      })}
     </>
   );
-}
+};
 
 export default MiniSurveyResults;

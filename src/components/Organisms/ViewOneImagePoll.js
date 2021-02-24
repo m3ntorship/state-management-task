@@ -7,8 +7,8 @@ const ViewOneImagePoll = () => {
     <div className="flex items-center flex-wrap w-4/2 flex-col">
       <div className=" bg-white shadow-soft rounded-md flex flex-col items-center p-m mb-10">
         <Header />
-        <OneImage casePost="resulttrtr"/>
-        <Footer footerContent="120 Voters"/>
+        <OneImage casePost="resulttrtr" />
+        <Footer footerContent="120 Voters" />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 
-const OptionOfSurvey = ({ optionsInpVal, alpha, index }) => {
+const OptionOfSurvey = ({ optionsInpVal, alpha }) => {
   return (
     <div
       key={optionsInpVal}
