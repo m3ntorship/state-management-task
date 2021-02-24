@@ -1,17 +1,13 @@
-import React from "react";
+import React from 'react'
 
-function OptionOfGroup({ numOFOptions }) {
-  console.log(numOFOptions);
-  return (
-    <div>
-      <div className="mb-m w-full">
-        <h3 className="text-md text-dark font-normal">
-          Which is easier to learn?
-        </h3>
-      </div>
-
-      {numOFOptions.map((option, index) => (
-        <div className="misc-box bg-grey-bg hover:bg-grey-shd6 flex items-center w-37xl p-xs mb-xs rounded-md">
+function TextPoll({favourites}) {
+    favourites=["red","White","pink"]
+    return (
+       
+    
+<>
+      {favourites.map((option, index) => (
+        <div className="bg-grey-bg hover:bg-grey-shd6 flex items-center w-37xl p-xs mb-xs rounded-md">
           <svg
             className="mr-s"
             width="24"
@@ -32,8 +28,8 @@ function OptionOfGroup({ numOFOptions }) {
           <h3 className="text-sm font-normal text-dark">{option}</h3>
         </div>
       ))}
-    </div>
+   </>
   );
 }
 
-export default OptionOfGroup;
+export default TextPoll

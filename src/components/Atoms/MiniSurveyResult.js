@@ -19,7 +19,7 @@ function MiniSurveyResult() {
         </div>
       </div>
 
-      <h3 class="text-sm font-normal text-dark-grey mb-xs w-full">
+      <h3 className="text-sm font-normal text-dark-grey mb-xs w-full">
         Group name
       </h3>
       <div className="w-full mr-20">
@@ -73,7 +73,7 @@ function MiniSurveyResult() {
         <h3 className="text-base font-medium text-dark">25%</h3>
       </div>
 
-      <h3 class="text-sm font-normal text-dark-grey mb-xs w-full">
+      <h3 className="text-sm font-normal text-dark-grey mb-xs w-full">
         Group name
       </h3>
       <div className="w-full mr-20">
@@ -150,7 +150,7 @@ function MiniSurveyResult() {
         </div>
         <h3 className="text-base font-medium text-dark">15%</h3>
       </div>
-      <h3 class="text-sm font-normal text-dark-grey mb-xs w-full">
+      <h3 className="text-sm font-normal text-dark-grey mb-xs w-full">
         Group name
       </h3>
       <div className="w-full mr-20">

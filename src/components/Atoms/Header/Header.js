@@ -1,7 +1,7 @@
 import React from "react";
-import avatar from "../../img/large-avatar.png";
+import avatar from "../../../img/large-avatar.png";
 const Header = (props) => {
-  const { name, date, srcOfUserImage = avatar } = props;
+  const { name="Ahmed Ayoub", date="2 hours ago", srcOfUserImage = avatar } = props;
   return (
     <div className="flex justify-between pb-s border-b w-full border-grey-shd6 mb-m">
       <div className="flex">
