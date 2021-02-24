@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import filled from "../../../img/large-avatar.png";
 import PostType from "./components/PostType";
+import Avatar from "../../Atoms/Avatar/Avatar";
+import FormInput from "../../Atoms/FormInput/FormInput";
 
 const PostEdit = () => {
   const [active, setActive] = useState(false);
@@ -9,15 +10,9 @@ const PostEdit = () => {
   };
   return (
     <div className="flex justify-center relative">
-      <div className="misc-box bg-white shadow-soft rounded-md flex items-center p-m mb-10">
-        <img src={filled} alt="filled avatar" className="w-10 mr-m" />
-        <input
-          className="hover:border-grey-shd2 focus:text-dark-grey focus:border-dark border border-grey-shd5 py-2.5 px-m text-sm font-normal text-grey-shd1 w-64 md:w-96 rounded-md focus:outline-none"
-          type="text"
-          placeholder="What do you want to ask about?"
-          onClick={inputHandler}
-          data-testid="inputField"
-        />
+      <div className="misc-box bg-white shadow-dark rounded-md flex items-center p-m mb-10">
+        <Avatar size="md" />
+        <FormInput withLabel={false} clickHandler={inputHandler} />
       </div>
       {active ? (
         <div

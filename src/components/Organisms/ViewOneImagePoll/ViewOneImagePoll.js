@@ -1,9 +1,10 @@
 import React from "react";
-import Header from "../../Atoms/Header";
+import Header from "../../Atoms/Header/Header";
 import OneImage from "../../Atoms/OneImage";
-import Footer from "../../Atoms/Footer";
+import Footer from "../../Atoms/ImagePollFooter/Footer";
 const ViewOneImagePoll = ({ post }) => {
   const { name, date, caption, image, label } = post;
+
   return (
     <div
       data-testid="post"
@@ -15,8 +16,9 @@ const ViewOneImagePoll = ({ post }) => {
           caption={caption}
           image={image}
           label={label}
-          casePost="resulttrtr"
+          casePost="result"
         />
+
         <Footer footerContent="120 Voters" />
       </div>
     </div>
