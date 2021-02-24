@@ -22,8 +22,8 @@ function TwoImage(props) {
             <div className="font-normal text-sm hidden text-dark md:flex items-center py-xxsv px-xsvv bg-white bg-opacity-40 rounded-sm absolute bottom-4 left-4">
               {captionOfImage}
             </div>
-            <div class="absolute bottom-4 right-4 flex">
-              <div class="relative">
+            <div className="absolute bottom-4 right-4 flex">
+              <div className="relative">
                 <svg
                   width="40"
                   height="40"
@@ -48,8 +48,8 @@ function TwoImage(props) {
             <div className="font-normal text-sm hidden text-dark md:flex items-center py-xxsv px-xsvv bg-white bg-opacity-40 rounded-sm absolute bottom-4 left-4">
               {captionOfImage}
             </div>
-            <div class="absolute bottom-4 right-4 flex">
-              <div class="relative">
+            <div className="absolute bottom-4 right-4 flex">
+              <div className="relative">
                 <svg
                   width="40"
                   height="40"

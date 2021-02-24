@@ -19,14 +19,6 @@ body {
   @apply font-sans;
 }
 
-.text-hero-large {
-  @apply text-3xl md:text-4xl;
-}
-
-.text-hero-large-bold {
-  @apply font-bold text-3xl md:text-4xl;
-}
-
 .text-hero-medium {
   @apply text-2xl md:text-3xl;
 }

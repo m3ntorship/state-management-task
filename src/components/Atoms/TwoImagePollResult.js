@@ -23,12 +23,12 @@ function TwoImagePollResult(props) {
             <div className="font-normal text-sm hidden text-dark md:flex items-center py-xxsv px-xsvv bg-white bg-opacity-40 rounded-sm absolute bottom-4 left-4">
               {captionOfImage}
             </div>
-            <div class="absolute bottom-4 right-4 flex">
-              <div class="flex items-start">
-                <p class="bg-white py-xxs px-xsvv rounded-tl-md rounded-bl-md">
+            <div className="absolute bottom-4 right-4 flex">
+              <div className="flex items-start">
+                <p className="bg-white py-xxs px-xsvv rounded-tl-md rounded-bl-md">
                   {25}%
                 </p>
-                <div class="bg-white p-xxs rounded-tr-md rounded-br-md rounded-bl-md">
+                <div className="bg-white p-xxs rounded-tr-md rounded-br-md rounded-bl-md">
                   <Progress progress={25} />
                 </div>
               </div>
@@ -40,12 +40,12 @@ function TwoImagePollResult(props) {
               {captionOfImage}
             </div>
 
-            <div class="absolute bottom-4 right-4 flex">
-              <div class="flex items-start">
-                <p class="bg-white py-xxs px-xsvv rounded-tl-md rounded-bl-md">
+            <div className="absolute bottom-4 right-4 flex">
+              <div className="flex items-start">
+                <p className="bg-white py-xxs px-xsvv rounded-tl-md rounded-bl-md">
                   {75}%
                 </p>
-                <div class="bg-white p-xxs rounded-tr-md rounded-br-md rounded-bl-md">
+                <div className="bg-white p-xxs rounded-tr-md rounded-br-md rounded-bl-md">
                   <Progress progress={75} />
                 </div>
               </div>

@@ -11,7 +11,10 @@ function OptionOfGroup({ numOFOptions }) {
       </div>
 
       {numOFOptions.map((option, index) => (
-        <div className="misc-box bg-grey-bg hover:bg-grey-shd6 flex items-center w-37xl p-xs mb-xs rounded-md">
+        <div
+          key={index}
+          className="misc-box bg-grey-bg hover:bg-grey-shd6 flex items-center w-37xl p-xs mb-xs rounded-md"
+        >
           <svg
             className="mr-s"
             width="24"

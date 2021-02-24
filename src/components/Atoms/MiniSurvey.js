@@ -19,7 +19,7 @@ function MiniSurvey() {
         </div>
       </div>
 
-      <h3 class="text-sm font-normal text-dark-grey mb-xs w-full">
+      <h3 className="text-sm font-normal text-dark-grey mb-xs w-full">
         Group name
       </h3>
       <div className="misc-box bg-grey-bg hover:bg-grey-shd6 flex items-center w-37xl p-xs mb-xs rounded-md">
@@ -88,7 +88,7 @@ function MiniSurvey() {
         <h3 className="text-sm font-normal text-dark">Choice</h3>
       </div>
 
-      <h3 class="text-sm font-normal text-dark-grey mb-xs w-full">
+      <h3 className="text-sm font-normal text-dark-grey mb-xs w-full">
         Group name
       </h3>
       <div className="misc-box bg-grey-bg hover:bg-grey-shd6 flex items-center w-37xl p-xs mb-xs rounded-md">
@@ -136,7 +136,7 @@ function MiniSurvey() {
         <h3 className="text-sm font-normal text-dark">Choice</h3>
       </div>
 
-      <h3 class="text-sm font-normal text-dark-grey mb-xs w-full">
+      <h3 className="text-sm font-normal text-dark-grey mb-xs w-full">
         Group name
       </h3>
       <div className="misc-box bg-grey-bg hover:bg-grey-shd6 flex items-center w-37xl p-xs mb-xs rounded-md">
