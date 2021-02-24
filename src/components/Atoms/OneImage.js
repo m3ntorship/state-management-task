@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 
-
 const OneImage = (props) => {
   const [offset, setOffset] = useState(0);
   const [offset2, setOffset2] = useState(0);
@@ -12,8 +11,7 @@ const OneImage = (props) => {
     strokeWidth = 7,
     backgroundColor = "#fff",
     circleColor = "#FE544A",
-    
-    
+
     casePost = "result",
     caption,
     image,

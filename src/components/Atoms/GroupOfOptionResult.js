@@ -4,10 +4,10 @@ function GroupOfOptionResult() {
   return (
     <div>
       <div className="mb-m w-full">
-      <h3 className="text-md text-dark font-normal">
-        Which is easier to learn?
-      </h3>
-</div>
+        <h3 className="text-md text-dark font-normal">
+          Which is easier to learn?
+        </h3>
+      </div>
       <div className="w-full mr-20">
         <div className="misc-box bg-primary flex justify-between items-center w-33xl p-xs mb-xs rounded-md">
           <div className="flex items-center">
