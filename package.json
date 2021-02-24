@@ -28,11 +28,6 @@
     "src/css/.css": "stylelint --cache --fix",
     "*.{js,css,md}": "prettier --write"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "browserslist": {
     "production": [
       ">0.2%",
