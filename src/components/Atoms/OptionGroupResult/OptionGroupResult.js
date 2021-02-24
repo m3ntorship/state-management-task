@@ -7,6 +7,7 @@ const OptionGroupResult=({maxProgress,option,index,alpha}) =>{
         {
           "bg-primary": maxProgress === option.progress,
           "bg-primary-shd7": maxProgress !== option.progress,
+          "bg-success": option.progress === 100,
         }
       );
       const textFontClasses = conditionalProperties(

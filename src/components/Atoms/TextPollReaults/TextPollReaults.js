@@ -3,9 +3,9 @@ import OptionGroupResult from "../../Atoms/OptionGroupResult/OptionGroupResult";
 
 const TextPollReaults = ({ favourites }) => {
   favourites = [
-    { inptField: "red", progress: 50 },
-    { inptField: "White", progress: 60 },
-    { inptField: "pink", progress: 10 },
+    { inptField: "red", progress: 20 },
+    { inptField: "White", progress: 50},
+    { inptField: "pink", progress: 30 },
   ];
   let maxProgress = Math.max.apply(
     Math,
