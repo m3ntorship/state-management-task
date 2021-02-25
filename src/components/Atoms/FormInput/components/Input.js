@@ -17,7 +17,7 @@ const Input = (props) => {
   } = props;
 
   const inputClasses = conditionalProperties(
-    "w-33xl py-2.5 pr-m text-sm text-grey-shd1 font-normal border rounded-md hover:border-grey-shd2 focus:text-dark-grey focus:outline-none",
+    "w-33xl py-2.5 pr-m placeholder-grey-shd1 text-sm text-dark-grey font-normal border rounded-md hover:border-grey-shd2 focus:text-dark focus:outline-none",
     {
       "pl-9": leftIcon && !rightIcon,
       "pl-m": (leftIcon && rightIcon) || (!leftIcon && !prefixDrop),
@@ -26,7 +26,7 @@ const Input = (props) => {
       "border-error focus:border-error": variant === "error",
       "border-success focus:border-success": variant === "success",
       "border-grey-shd5 focus:border-dark":
-        variant === "error" && variant === "success",
+        variant !== "error" && variant !== "success",
       "pointer-events-none opacity-50 border border-grey-shd5": disabled,
     }
   );

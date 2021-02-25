@@ -67,6 +67,7 @@ const FormInput = (props) => {
         leftIcon={leftIcon}
         withLabel={withLabel}
         setInputVal={setInputVal}
+        inputVal={inputVal}
       />
       <SideIcons
         rightIcon={rightIcon}
