@@ -15,7 +15,7 @@ const OptionInput = ({ id, alpha, click, index, addOption, changed }) => {
       </svg>
       <div className="relative w-full">
         <input
-          className="hover:border-grey-shd2 focus:text-dark-grey focus:border-dark border border-grey-shd5 bg-transparent md:bg-white py-2.5 pr-m pl-11 text-sm font-normal text-grey-shd1 w-full rounded-md focus:outline-none"
+          className="hover:border-grey-shd2 focus:text-dark focus:border-dark border border-grey-shd5 bg-transparent md:bg-white py-2.5 pr-m pl-11 text-sm font-normal text-dark-grey w-full rounded-md focus:outline-none"
           type="text"
           placeholder={`Option ${index + 1}`}
           id={id}
