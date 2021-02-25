@@ -20,11 +20,11 @@ const OptionGroupBox = (props) => {
     >
       <div className="flex items-center justify-between mb-m">
         <input
-          className={`font-normal text-sm text-dark placeholder-dark focus:outline-none bg-accent-shd7 ${
+          className={`font-normal w-full rounded-md px-2 py-0.5 text-sm text-dark placeholder-dark focus:outline-none bg-accent-shd7 ${
             inputChecked ? "hidden" : "inline-block"
           }`}
           type="text"
-          placeholder="Typing a new group name here|"
+          placeholder="Typing a new group name here"
           onChange={changed}
           id={id}
         />
