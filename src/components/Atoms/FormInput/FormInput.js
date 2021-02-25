@@ -17,7 +17,7 @@ const FormInput = (props) => {
     clickHandler = () => {},
     placeholder = "What do you want to ask about?",
     inputVal,
-    setInputVal,
+    setInputVal = () => {},
   } = props;
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
