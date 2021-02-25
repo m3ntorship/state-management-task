@@ -16,10 +16,11 @@ const FormInput = (props) => {
     prefixDrop = false,
     clickHandler = () => {},
     placeholder = "What do you want to ask about?",
+    inputVal,
+    setInputVal,
   } = props;
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
-  const [inputVal, setInputVal] = useState("");
   const hideIconHandler = (e) => {
     setFocus(false);
     e.stopPropagation();

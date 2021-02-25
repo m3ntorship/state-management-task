@@ -4,16 +4,46 @@ import TabGroup from "../../TabGroup/TabGroup";
 import FormInput from "../../../Atoms/FormInput/FormInput";
 
 import { tabGroupData } from "../../TabGroup/data";
+import { useDispatch } from "react-redux";
 import OptionGroup from "../../../Molecules/OptionGroup/OptionGroup";
 import ImagePoll from "./ImagePoll";
 import TextDefault from "../../../Molecules/TextDefault/TextDefault";
 import Footer from "../../../Molecules/Footer/Footer";
+import {
+  addFavorites,
+  postAdded,
+} from "../../../../features/picklyPosts/picklyPostsSlice";
 
 const PostType = ({ active }) => {
   const [data, setData] = useState(tabGroupData());
+  const [inputVal, setInputVal] = useState("");
+  const [textInputs, setTextInputs] = useState([]);
   const [addOptionGroup, setAddOptionGroup] = useState([
     { id: 1, optionName: "", optionInpVals: null },
   ]);
+  const dispatch = useDispatch();
+  const addPost = () => {
+    let postType = "";
+    data.map((item) => {
+      if (item.active === true) {
+        postType = item.content;
+      }
+      return item;
+    });
+    let options = [];
+    if (textInputs) {
+      textInputs.map((option) => {
+        options.push(option.value);
+        return option;
+      });
+    }
+    dispatch(postAdded(postType, inputVal, addOptionGroup));
+    dispatch(addFavorites(options));
+    setAddOptionGroup([]);
+    setInputVal("");
+    options = [];
+    setTextInputs([]);
+  };
 
   return (
     <div
@@ -28,7 +58,11 @@ const PostType = ({ active }) => {
           <TabGroup data={data} setData={setData} />
         </div>
         <div className="mb-m">
-          <FormInput withLabel={false} />
+          <FormInput
+            withLabel={false}
+            inputVal={inputVal}
+            setInputVal={setInputVal}
+          />
         </div>
         {data.map((tab, i) => {
           if (tab.active) {
@@ -36,7 +70,7 @@ const PostType = ({ active }) => {
               case "Image Poll":
                 return <ImagePoll key={i} />;
               case "Text Poll":
-                return <TextDefault key={i} setTextInputs={() => {}} />;
+                return <TextDefault key={i} setTextInputs={setTextInputs} />;
               case "Mini survey":
                 return (
                   <OptionGroup
@@ -55,7 +89,7 @@ const PostType = ({ active }) => {
       </div>
       <div className="md:bg-white md:shadow-soft md:rounded-b-md border-b border-grey-shd6 md:border-none flex p-m md:mb-10">
         <div className="flex justify-between w-full">
-          <Footer />
+          <Footer addPost={addPost} />
         </div>
       </div>
       <div className="flex md:hidden p-m mb-10 w-full justify-between">

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Progress from "../../../Atoms/Progress/Progress";
+import { useDispatch } from "react-redux";
+import { addImages } from "../../../../features/picklyPosts/picklyPostsSlice";
 
 const useCloudinaryUploader = (file) => {
   const [response, setResponse] = useState({});
@@ -33,6 +35,7 @@ const ImagePost = ({ alpha, file }) => {
   // States
   const [fileUrl, setFileUrl] = useState("");
   const { response, progress, uploaded } = useCloudinaryUploader(file);
+  const dispatch = useDispatch();
 
   // Transfrom images to  base64
   useEffect(() => {
@@ -40,6 +43,7 @@ const ImagePost = ({ alpha, file }) => {
     fileReader.readAsDataURL(file);
     fileReader.addEventListener("load", function (e) {
       setFileUrl(e.target.result);
+      dispatch(addImages(e.target.result));
     });
   }, [file]);
   // Upload Image to server

@@ -41,7 +41,7 @@ const TextDefault = (props) => {
     if (setAddOptionGroup) {
       setAddOptionGroup(
         addOptionGroup.map((optionGroup) => {
-          if (optionGroup.id === optionBox.current.id) {
+          if (optionGroup.id.toString() === optionBox.current.id) {
             optionGroup.optionInpVals = inpuVals;
           }
           return optionGroup;

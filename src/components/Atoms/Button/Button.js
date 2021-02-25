@@ -11,6 +11,7 @@ const Button = (props) => {
     leftIcon = false,
     rightIcon = false,
     onlyIcon = false,
+    addPost = () => {},
   } = props;
   const buttonWithOnlyIcon = conditionalProperties({
     "p-xs text-base font-medium": size === "md",
@@ -67,7 +68,7 @@ const Button = (props) => {
     white: variant === "primary",
   });
   return (
-    <button className={buttonClasses}>
+    <button className={buttonClasses} onClick={addPost}>
       {rightIcon ? (
         <svg
           className={svgClasses}
