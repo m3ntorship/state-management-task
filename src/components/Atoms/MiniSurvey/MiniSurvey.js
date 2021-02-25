@@ -2,15 +2,7 @@ import React from "react";
 import imagePost from "../../../img/Frame 145.png";
 import OptionOfSurvey from "../../Atoms/OptionOfSurvey/OptionOfSurvey";
 function MiniSurvey(props) {
-  const Options = [
-    { id: "1", optionName: "front", optionsInpVals: ["react", "vue"] },
-    {
-      id: "2",
-      optionName: "back",
-      optionsInpVals: ["node", "nested"],
-    },
-  ];
-  const { image = imagePost, MiniSurveyOptions = Options } = props;
+  const { image = imagePost, miniSurvey = [] } = props;
   const letters = (() => {
     const caps = [...Array(26)].map((val, i) => String.fromCharCode(i + 65));
     return caps;
@@ -27,12 +19,12 @@ function MiniSurvey(props) {
           />
         </div>
       </div>
-      {MiniSurveyOptions.map((MiniSurveyOption) => (
-        <div key={MiniSurveyOption.optionName}>
+      {miniSurvey.map((MiniSurveyOption) => (
+        <div key={MiniSurveyOption.id}>
           <h3 className="text-sm font-normal text-dark-grey mb-xs w-full">
             {MiniSurveyOption.optionName}
           </h3>
-          {MiniSurveyOption.optionsInpVals.map((optionsInpVal, index) => {
+          {MiniSurveyOption.optionInpVals.map((optionsInpVal, index) => {
             const letter = letters[index];
             return (
               <OptionOfSurvey

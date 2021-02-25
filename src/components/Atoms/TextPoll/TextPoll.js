@@ -1,7 +1,6 @@
 import React from "react";
 import OptionOfSurvey from "../../Atoms/OptionOfSurvey/OptionOfSurvey";
-function TextPoll({ favourites }) {
-  favourites = ["red", "White", "pink"];
+function TextPoll({ favourites = [] }) {
   const letters = (() => {
     const caps = [...Array(26)].map((val, i) => String.fromCharCode(i + 65));
     return caps;

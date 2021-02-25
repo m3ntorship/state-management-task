@@ -16,19 +16,21 @@ const App = () => {
       <PostEdit />
       <Posts />
       {posts.map((post, index) => {
+        let component;
         switch (post.type) {
           case "Image Poll":
-            <ViewImagePoll key={index + 100} />;
+            component = <ViewImagePoll post={post} key={index + 100} />;
             break;
           case "Text Poll":
-            <ViewTextPoll key={index} />;
+            component = <ViewTextPoll post={post} key={index} />;
             break;
           case "Mini survey":
-            <ViewMiniSurvey key={index + 200} />;
+            component = <ViewMiniSurvey post={post} key={index + 200} />;
             break;
           default:
             return;
         }
+        return component;
       })}
       {/* <ViewImagePoll />
       <ViewImagePollResult />
