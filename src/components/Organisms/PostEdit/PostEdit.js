@@ -24,7 +24,7 @@ const PostEdit = () => {
           onClick={() => setActive(false)}
         ></div>
       ) : null}
-      <PostType active={active} />
+      <PostType active={active} setActive={setActive} />
     </div>
   );
 };

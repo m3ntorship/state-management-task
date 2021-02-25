@@ -11,20 +11,27 @@ const posts = createSlice({
           type: "",
           postTitle: "",
           fileUrls: [],
+          imageCaptions: [],
           favorites: [],
           miniSurvey: [],
         },
       ];
     },
-    addImages(state, action) {
-      const stateLen = state.length;
-      state.map((post, i) => {
-        if (stateLen === i + 1) {
-          post.fileUrls = [...post.fileUrls, action.payload];
-        }
-        return post;
-      });
-      return state;
+    addImages: {
+      reducer: (state, { payload: { fileUrls, imageCaption } }) => {
+        const stateLen = state.length;
+        state.map((post, i) => {
+          if (stateLen === i + 1) {
+            post.fileUrls = [...post.fileUrls, fileUrls];
+            post.imageCaptions = [...post.imageCaptions, imageCaption];
+          }
+          return post;
+        });
+        return state;
+      },
+      prepare: (fileUrls, imageCaption) => {
+        return { payload: { fileUrls, imageCaption } };
+      },
     },
     addFavorites(state, action) {
       const stateLen = state.length;

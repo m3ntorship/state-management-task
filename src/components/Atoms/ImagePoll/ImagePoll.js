@@ -1,14 +1,13 @@
 import React from "react";
-import imagePost from "../../../img/post-img.jpg";
 const ImagePoll = (props) => {
-  const { fileUrls = imagePost, label = "image label" } = props;
+  const { fileUrls = [], label = [] } = props;
   return (
     <div className="grid grid-img-upload w-37xl gap-2 gap-x-2 gap-y-4 mb-m">
       {fileUrls.map((fileUrl, index) => (
         <div key={index} className=" relative rounded-md overflow-hidden">
           <img src={fileUrl} alt="post" className=" relative " />
           <div className="font-normal text-sm hidden text-dark md:flex items-center py-xxsv px-xsvv bg-white bg-opacity-40 rounded-sm absolute bottom-4 left-4">
-            {label}
+            {label[index]}
           </div>
           <div className="absolute bottom-4 right-4 flex">
             <div className="relative">
