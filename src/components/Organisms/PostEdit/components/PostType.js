@@ -19,7 +19,7 @@ const PostType = ({ active, setActive }) => {
   const [inputVal, setInputVal] = useState("");
   const [textInputs, setTextInputs] = useState([]);
   const [addOptionGroup, setAddOptionGroup] = useState([
-    { id: 1, optionName: "", optionInpVals: null },
+    { id: 1, optionName: "", optionInpVals: [] },
   ]);
   const [postIsAdded, setPostIsAdded] = useState(false);
   const dispatch = useDispatch();
