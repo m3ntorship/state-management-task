@@ -14,15 +14,17 @@ import {
   postAdded,
 } from "../../../../features/picklyPosts/picklyPostsSlice";
 
-const PostType = ({ active }) => {
+const PostType = ({ active, setActive }) => {
   const [data, setData] = useState(tabGroupData());
   const [inputVal, setInputVal] = useState("");
   const [textInputs, setTextInputs] = useState([]);
   const [addOptionGroup, setAddOptionGroup] = useState([
     { id: 1, optionName: "", optionInpVals: [] },
   ]);
+  const [postIsAdded, setPostIsAdded] = useState(false);
   const dispatch = useDispatch();
   const addPost = () => {
+    setPostIsAdded(!postIsAdded);
     let postType = "";
     data.map((item) => {
       if (item.active === true) {
@@ -43,6 +45,7 @@ const PostType = ({ active }) => {
     setInputVal("");
     options = [];
     setTextInputs([]);
+    setActive(false);
   };
 
   return (
@@ -68,7 +71,7 @@ const PostType = ({ active }) => {
           if (tab.active) {
             switch (tab.content) {
               case "Image Poll":
-                return <ImagePoll key={i} />;
+                return <ImagePoll key={i} postIsAdded={postIsAdded} />;
               case "Text Poll":
                 return <TextDefault key={i} setTextInputs={setTextInputs} />;
               case "Mini survey":

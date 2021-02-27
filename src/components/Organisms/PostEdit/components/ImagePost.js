@@ -31,10 +31,11 @@ const useCloudinaryUploader = (file) => {
   return { response, progress, uploaded };
 };
 // return data, progress, uploaded
-const ImagePost = ({ alpha, file }) => {
+const ImagePost = ({ alpha, file, postIsAdded }) => {
   // States
   const [fileUrl, setFileUrl] = useState("");
-  const { response, progress, uploaded } = useCloudinaryUploader(file);
+  const [imgCaption, setImgCaption] = useState("");
+  const { progress, uploaded } = useCloudinaryUploader(file);
   const dispatch = useDispatch();
 
   // Transfrom images to  base64
@@ -43,11 +44,14 @@ const ImagePost = ({ alpha, file }) => {
     fileReader.readAsDataURL(file);
     fileReader.addEventListener("load", function (e) {
       setFileUrl(e.target.result);
-      dispatch(addImages(e.target.result));
     });
   }, [file]);
+  useEffect(() => {
+    if (fileUrl) {
+      dispatch(addImages(fileUrl, imgCaption));
+    }
+  }, [postIsAdded]);
   // Upload Image to server
-  console.log(response, "response");
   return (
     <div className="flex flex-col">
       {uploaded ? (
@@ -57,6 +61,8 @@ const ImagePost = ({ alpha, file }) => {
             <input
               className="hover:border-grey-shd2 focus:text-dark-grey focus:border-dark border border-grey-shd5 bg-transparent md:bg-white py-2.5 pr-m pl-11 text-sm font-normal text-grey-shd1 w-full rounded-b-md focus:outline-none"
               type="text"
+              onChange={(e) => setImgCaption(e.target.value)}
+              value={imgCaption}
               placeholder="Type caption (optional)"
             />
             <div className="bg-grey-shd7 py-0.5 px-xs rounded-sm absolute top-2 left-2">

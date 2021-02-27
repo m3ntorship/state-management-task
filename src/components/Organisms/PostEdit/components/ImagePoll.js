@@ -3,7 +3,7 @@ import ImageUpload from "../../../Atoms/ImageUpload/ImageUpload";
 import ImagePost from "./ImagePost";
 import conditionalProperties from "classnames";
 
-const ImagePoll = () => {
+const ImagePoll = ({ postIsAdded }) => {
   const [files, setFIles] = useState([]);
   const changeHandler = (e) => {
     setFIles([...e.target.files]);
@@ -23,7 +23,14 @@ const ImagePoll = () => {
       <div className={imgClasses}>
         {files.map((file, index) => {
           const letter = letters[index];
-          return <ImagePost key={index} alpha={letter} file={file} />;
+          return (
+            <ImagePost
+              key={index}
+              alpha={letter}
+              file={file}
+              postIsAdded={postIsAdded}
+            />
+          );
         })}
       </div>
       <ImageUpload changed={changeHandler} />
