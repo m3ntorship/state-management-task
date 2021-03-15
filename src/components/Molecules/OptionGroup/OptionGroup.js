@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import FormInput from "../../Atoms/FormInput/FormInput";
 import AddOption from "./components/AddOption";
 import OptionGroupBox from "./components/OptionGroupBox";
 
 const OptionGroup = (props) => {
   const { addOptionGroup, setAddOptionGroup } = props;
+  const [inputVal, setInputVal] = useState("");
   const addOptionGroupHandler = () => {
     const numbers = "123456789";
     const randId = Math.floor(Math.random() * numbers);
@@ -29,20 +31,29 @@ const OptionGroup = (props) => {
   };
 
   return (
-    <div className="flex flex-col">
-      {addOptionGroup.map((box) => (
-        <OptionGroupBox
-          key={box.id}
-          click={removeOptionGroupHandler}
-          id={box.id}
-          groupName={box.optionName}
-          changed={optionNameHandler}
-          addOptionGroup={addOptionGroup}
-          setAddOptionGroup={setAddOptionGroup}
+    <>
+      <div className="mb-m">
+        <FormInput
+          withLabel={false}
+          inputVal={inputVal}
+          setInputVal={setInputVal}
         />
-      ))}
-      <AddOption click={addOptionGroupHandler} />
-    </div>
+      </div>
+      <div className="flex flex-col">
+        {addOptionGroup.map((box) => (
+          <OptionGroupBox
+            key={box.id}
+            click={removeOptionGroupHandler}
+            id={box.id}
+            groupName={box.optionName}
+            changed={optionNameHandler}
+            addOptionGroup={addOptionGroup}
+            setAddOptionGroup={setAddOptionGroup}
+          />
+        ))}
+        <AddOption click={addOptionGroupHandler} />
+      </div>
+    </>
   );
 };
 

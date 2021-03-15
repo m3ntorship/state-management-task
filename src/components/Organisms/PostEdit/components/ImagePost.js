@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Progress from "../../../Atoms/Progress/Progress";
 import { useDispatch } from "react-redux";
-import { addImages } from "../../../../features/picklyPosts/picklyPostsSlice";
+import { addImagePoll } from "../../../../features/picklyPosts/picklyPostsSlice";
 
 const useCloudinaryUploader = (file) => {
   const [response, setResponse] = useState({});
@@ -31,7 +31,7 @@ const useCloudinaryUploader = (file) => {
   return { response, progress, uploaded };
 };
 // return data, progress, uploaded
-const ImagePost = ({ alpha, file, postIsAdded }) => {
+const ImagePost = ({ alpha, file, index }) => {
   // States
   const [fileUrl, setFileUrl] = useState("");
   const [imgCaption, setImgCaption] = useState("");
@@ -46,23 +46,35 @@ const ImagePost = ({ alpha, file, postIsAdded }) => {
       setFileUrl(e.target.result);
     });
   }, [file]);
+
   useEffect(() => {
     if (fileUrl) {
-      dispatch(addImages(fileUrl, imgCaption));
+      dispatch(addImagePoll({ imagesData: { fileUrls: fileUrl } }));
+      // dispatch(addImagePoll(fileUrl, imgCaption));
     }
-  }, [postIsAdded]);
+  }, [fileUrl]);
+  useEffect(() => {
+    dispatch(
+      addImagePoll({
+        imagesData: { index, imageCaption: imgCaption },
+      })
+    );
+    // dispatch(addImagePoll(fileUrl, imgCaption));
+  }, [imgCaption]);
   // Upload Image to server
   return (
     <div className="flex flex-col">
       {uploaded ? (
         <>
-          <img src={fileUrl} alt="fashion" width="344" className="md:w-96" />
+          <div className="w-full h-full">
+            <img src={fileUrl} alt="fashion" className=" w-full h-full" />
+          </div>
           <div className="relative mt-xxs">
             <input
               className="hover:border-grey-shd2 focus:text-dark-grey focus:border-dark border border-grey-shd5 bg-transparent md:bg-white py-2.5 pr-m pl-11 text-sm font-normal text-grey-shd1 w-full rounded-b-md focus:outline-none"
               type="text"
-              onChange={(e) => setImgCaption(e.target.value)}
-              value={imgCaption}
+              onBlur={(e) => setImgCaption(e.target.value)}
+              // value={imgCaption}
               placeholder="Type caption (optional)"
             />
             <div className="bg-grey-shd7 py-0.5 px-xs rounded-sm absolute top-2 left-2">

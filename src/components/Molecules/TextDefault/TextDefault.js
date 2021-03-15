@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import AddOption from "./components/AddOption";
 import OptionInput from "./components/OptionInput";
+import FormInput from "../../Atoms/FormInput/FormInput";
 
 const TextDefault = (props) => {
+  const { setTextInputs, addOptionGroup, setAddOptionGroup, optionBox } = props;
   const [addOption, setAddOption] = useState([
     { id: 1, value: "" },
     { id: 2, value: "" },
   ]);
-  const { setTextInputs, addOptionGroup, setAddOptionGroup, optionBox } = props;
+  const [inputVal, setInputVal] = useState("");
+
   // const alpha = "abcdefghijklmnopqrstuvwxyz".toUpperCase();
   //  Alphabet letters
   const letters = (() => {
@@ -50,25 +53,34 @@ const TextDefault = (props) => {
     }
   };
   return (
-    <div className="flex flex-col">
-      <div className="flex flex-col w-full">
-        {addOption.map((item, index) => {
-          const letter = letters[index];
-          return (
-            <OptionInput
-              key={item.id}
-              id={item.id}
-              alpha={letter}
-              click={removeOptionHandler}
-              index={index}
-              addOption={addOption}
-              changed={inputValHandler}
-            />
-          );
-        })}
+    <>
+      <div className="mb-m">
+        <FormInput
+          withLabel={false}
+          inputVal={inputVal}
+          setInputVal={setInputVal}
+        />
       </div>
-      <AddOption click={addOptionHandler} />
-    </div>
+      <div className="flex flex-col">
+        <div className="flex flex-col w-full">
+          {addOption.map((item, index) => {
+            const letter = letters[index];
+            return (
+              <OptionInput
+                key={item.id}
+                id={item.id}
+                alpha={letter}
+                click={removeOptionHandler}
+                index={index}
+                addOption={addOption}
+                changed={inputValHandler}
+              />
+            );
+          })}
+        </div>
+        <AddOption click={addOptionHandler} />
+      </div>
+    </>
   );
 };
 

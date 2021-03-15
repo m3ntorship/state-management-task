@@ -1,52 +1,52 @@
 import React, { useState } from "react";
 import Avatar from "../../../Atoms/Avatar/Avatar";
 import TabGroup from "../../TabGroup/TabGroup";
-import FormInput from "../../../Atoms/FormInput/FormInput";
-
 import { tabGroupData } from "../../TabGroup/data";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import OptionGroup from "../../../Molecules/OptionGroup/OptionGroup";
 import ImagePoll from "./ImagePoll";
 import TextDefault from "../../../Molecules/TextDefault/TextDefault";
 import Footer from "../../../Molecules/Footer/Footer";
-import {
-  addFavorites,
-  postAdded,
-} from "../../../../features/picklyPosts/picklyPostsSlice";
+// import {
+// addFavorites,
+//   postAdded,
+// } from "../../../../features/picklyPosts/picklyPostsSlice";
 
-const PostType = ({ active, setActive }) => {
+const PostType = ({ active }) => {
   const [data, setData] = useState(tabGroupData());
-  const [inputVal, setInputVal] = useState("");
   const [textInputs, setTextInputs] = useState([]);
   const [addOptionGroup, setAddOptionGroup] = useState([
     { id: 1, optionName: "", optionInpVals: [] },
   ]);
-  const [postIsAdded, setPostIsAdded] = useState(false);
-  const dispatch = useDispatch();
-  const addPost = () => {
-    setPostIsAdded(!postIsAdded);
-    let postType = "";
-    data.map((item) => {
-      if (item.active === true) {
-        postType = item.content;
-      }
-      return item;
-    });
-    let options = [];
-    if (textInputs) {
-      textInputs.map((option) => {
-        options.push(option.value);
-        return option;
-      });
-    }
-    dispatch(postAdded(postType, inputVal, addOptionGroup));
-    dispatch(addFavorites(options));
-    setAddOptionGroup([]);
-    setInputVal("");
-    options = [];
-    setTextInputs([]);
-    setActive(false);
-  };
+  // Idiotic @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  console.log(textInputs);
+  // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  // const [postIsAdded, setPostIsAdded] = useState(false);
+  // const dispatch = useDispatch();
+  // const addPost = () => {
+  //   setPostIsAdded(!postIsAdded);
+  //   let postType = "";
+  //   data.map((item) => {
+  //     if (item.active === true) {
+  //       postType = item.content;
+  //     }
+  //     return item;
+  //   });
+  //   let options = [];
+  //   if (textInputs) {
+  //     textInputs.map((option) => {
+  //       options.push(option.value);
+  //       return option;
+  //     });
+  //   }
+  //   dispatch(postAdded(postType, inputVal, addOptionGroup));
+  //   dispatch(addFavorites(options));
+  //   setAddOptionGroup([]);
+  //   setInputVal("");
+  //   options = [];
+  //   setTextInputs([]);
+  //   setActive(false);
+  // };
 
   return (
     <div
@@ -60,18 +60,12 @@ const PostType = ({ active, setActive }) => {
           <Avatar size="md" />
           <TabGroup data={data} setData={setData} />
         </div>
-        <div className="mb-m">
-          <FormInput
-            withLabel={false}
-            inputVal={inputVal}
-            setInputVal={setInputVal}
-          />
-        </div>
+
         {data.map((tab, i) => {
           if (tab.active) {
             switch (tab.content) {
               case "Image Poll":
-                return <ImagePoll key={i} postIsAdded={postIsAdded} />;
+                return <ImagePoll key={i} />;
               case "Text Poll":
                 return <TextDefault key={i} setTextInputs={setTextInputs} />;
               case "Mini survey":
@@ -92,7 +86,7 @@ const PostType = ({ active, setActive }) => {
       </div>
       <div className="md:bg-white md:shadow-soft md:rounded-b-md border-b border-grey-shd6 md:border-none flex p-m md:mb-10">
         <div className="flex justify-between w-full">
-          <Footer addPost={addPost} />
+          <Footer />
         </div>
       </div>
       <div className="flex md:hidden p-m mb-10 w-full justify-between">

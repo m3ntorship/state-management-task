@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import PostType from "./components/PostType";
 import Avatar from "../../Atoms/Avatar/Avatar";
 import FormInput from "../../Atoms/FormInput/FormInput";
-import { useDispatch } from "react-redux";
-import { startPost } from "../../../features/picklyPosts/picklyPostsSlice";
+// import { useDispatch } from "react-redux";
+// import { startPost } from "../../../features/picklyPosts/picklyPostsSlice";
 
 const PostEdit = () => {
   const [active, setActive] = useState(false);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const inputHandler = () => {
     setActive(true);
-    dispatch(startPost());
+    // dispatch(startPost());
   };
   return (
     <div className="flex justify-center relative">
-      <div className="misc-box bg-white shadow-dark rounded-md flex items-center p-m mb-10">
+      <div className="w-1/3 misc-box bg-white shadow-dark rounded-md flex items-center p-m mb-10">
         <Avatar size="md" />
         <FormInput withLabel={false} clickHandler={inputHandler} />
       </div>
