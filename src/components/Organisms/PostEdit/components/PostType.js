@@ -1,50 +1,17 @@
 import React, { useState } from "react";
 import Avatar from "../../../Atoms/Avatar/Avatar";
 import TabGroup from "../../TabGroup/TabGroup";
-import FormInput from "../../../Atoms/FormInput/FormInput";
+// import FormInput from "../../../Atoms/FormInput/FormInput";
 
 import { tabGroupData } from "../../TabGroup/data";
-import { useDispatch } from "react-redux";
 import OptionGroup from "../../../Molecules/OptionGroup/OptionGroup";
 import ImagePoll from "./ImagePoll";
 import TextDefault from "../../../Molecules/TextDefault/TextDefault";
 import Footer from "../../../Molecules/Footer/Footer";
-import {
-  addFavorites,
-  postAdded,
-} from "../../../../features/picklyPosts/picklyPostsSlice";
 
 const PostType = ({ active, setActive }) => {
   const [data, setData] = useState(tabGroupData());
-  const [inputVal, setInputVal] = useState("");
-  const [textInputs, setTextInputs] = useState([]);
-  const [addOptionGroup, setAddOptionGroup] = useState([
-    { id: 1, optionName: "", optionInpVals: [] },
-  ]);
-  const [postIsAdded, setPostIsAdded] = useState(false);
-  const dispatch = useDispatch();
   const addPost = () => {
-    setPostIsAdded(!postIsAdded);
-    let postType = "";
-    data.map((item) => {
-      if (item.active === true) {
-        postType = item.content;
-      }
-      return item;
-    });
-    let options = [];
-    if (textInputs) {
-      textInputs.map((option) => {
-        options.push(option.value);
-        return option;
-      });
-    }
-    dispatch(postAdded(postType, inputVal, addOptionGroup));
-    dispatch(addFavorites(options));
-    setAddOptionGroup([]);
-    setInputVal("");
-    options = [];
-    setTextInputs([]);
     setActive(false);
   };
 
@@ -60,28 +27,15 @@ const PostType = ({ active, setActive }) => {
           <Avatar size="md" />
           <TabGroup data={data} setData={setData} />
         </div>
-        <div className="mb-m">
-          <FormInput
-            withLabel={false}
-            inputVal={inputVal}
-            setInputVal={setInputVal}
-          />
-        </div>
         {data.map((tab, i) => {
           if (tab.active) {
             switch (tab.content) {
               case "Image Poll":
-                return <ImagePoll key={i} postIsAdded={postIsAdded} />;
+                return <ImagePoll key={i} />;
               case "Text Poll":
-                return <TextDefault key={i} setTextInputs={setTextInputs} />;
+                return <TextDefault key={i} />;
               case "Mini survey":
-                return (
-                  <OptionGroup
-                    key={i}
-                    addOptionGroup={addOptionGroup}
-                    setAddOptionGroup={setAddOptionGroup}
-                  />
-                );
+                return <OptionGroup key={i} />;
               default:
                 return tab;
             }

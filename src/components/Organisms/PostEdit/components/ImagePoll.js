@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import ImageUpload from "../../../Atoms/ImageUpload/ImageUpload";
 import ImagePost from "./ImagePost";
 import conditionalProperties from "classnames";
+import FormInput from "../../../Atoms/FormInput/FormInput";
+import { useDispatch } from "react-redux";
+import { addImagePollPostTitle } from "../../../../features/picklyPosts/picklyPostsSlice";
 
 const ImagePoll = ({ postIsAdded }) => {
   const [files, setFIles] = useState([]);
+  const [inputVal, setInputVal] = useState("");
+  const dispatch = useDispatch();
   const changeHandler = (e) => {
     setFIles([...e.target.files]);
   };
@@ -20,6 +25,14 @@ const ImagePoll = ({ postIsAdded }) => {
   })();
   return (
     <>
+      <div className="mb-m">
+        <FormInput
+          blur={() => dispatch(addImagePollPostTitle(inputVal))}
+          withLabel={false}
+          inputVal={inputVal}
+          setInputVal={setInputVal}
+        />
+      </div>
       <div className={imgClasses}>
         {files.map((file, index) => {
           const letter = letters[index];
@@ -27,6 +40,7 @@ const ImagePoll = ({ postIsAdded }) => {
             <ImagePost
               key={index}
               alpha={letter}
+              id={index}
               file={file}
               postIsAdded={postIsAdded}
             />

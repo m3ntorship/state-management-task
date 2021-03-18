@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Progress from "../../../Atoms/Progress/Progress";
-import { useDispatch } from "react-redux";
-import { addImages } from "../../../../features/picklyPosts/picklyPostsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addImagePollImageSrc,
+  addImagePollImageCaption,
+} from "../../../../features/picklyPosts/picklyPostsSlice";
 
 const useCloudinaryUploader = (file) => {
   const [response, setResponse] = useState({});
@@ -31,13 +34,19 @@ const useCloudinaryUploader = (file) => {
   return { response, progress, uploaded };
 };
 // return data, progress, uploaded
-const ImagePost = ({ alpha, file, postIsAdded }) => {
+const ImagePost = ({ alpha, file }) => {
   // States
   const [fileUrl, setFileUrl] = useState("");
   const [imgCaption, setImgCaption] = useState("");
   const { progress, uploaded } = useCloudinaryUploader(file);
   const dispatch = useDispatch();
-
+  const imagePoll = useSelector(
+    (state) => state.picklyPosts.postEdit.imagePoll
+  );
+  useEffect(() => {
+    setFileUrl(imagePoll.imageInfo.src);
+    setImgCaption(imagePoll.imageInfo.caption);
+  }, []);
   // Transfrom images to  base64
   useEffect(() => {
     const fileReader = new FileReader();
@@ -47,10 +56,8 @@ const ImagePost = ({ alpha, file, postIsAdded }) => {
     });
   }, [file]);
   useEffect(() => {
-    if (fileUrl) {
-      dispatch(addImages(fileUrl, imgCaption));
-    }
-  }, [postIsAdded]);
+    if (!(fileUrl.length === 0)) dispatch(addImagePollImageSrc(fileUrl));
+  }, [fileUrl]);
   // Upload Image to server
   return (
     <div className="flex flex-col">
@@ -63,6 +70,7 @@ const ImagePost = ({ alpha, file, postIsAdded }) => {
               type="text"
               onChange={(e) => setImgCaption(e.target.value)}
               value={imgCaption}
+              onBlur={() => dispatch(addImagePollImageCaption(imgCaption))}
               placeholder="Type caption (optional)"
             />
             <div className="bg-grey-shd7 py-0.5 px-xs rounded-sm absolute top-2 left-2">
