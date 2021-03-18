@@ -9,6 +9,7 @@ const OptionGroupBox = (props) => {
     groupName,
     addOptionGroup,
     setAddOptionGroup,
+    optionName,
   } = props;
   const [inputChecked, setInputChecked] = useState(false);
   const optionBox = useRef();
@@ -25,6 +26,7 @@ const OptionGroupBox = (props) => {
           }`}
           type="text"
           placeholder="Typing a new group name here"
+          value={optionName}
           onChange={changed}
           id={id}
         />

@@ -1,53 +1,19 @@
 import React, { useState } from "react";
 import Avatar from "../../../Atoms/Avatar/Avatar";
 import TabGroup from "../../TabGroup/TabGroup";
+// import FormInput from "../../../Atoms/FormInput/FormInput";
+
 import { tabGroupData } from "../../TabGroup/data";
-// import { useDispatch } from "react-redux";
 import OptionGroup from "../../../Molecules/OptionGroup/OptionGroup";
 import ImagePoll from "./ImagePoll";
 import TextDefault from "../../../Molecules/TextDefault/TextDefault";
 import Footer from "../../../Molecules/Footer/Footer";
-// import {
-// addFavorites,
-//   postAdded,
-// } from "../../../../features/picklyPosts/picklyPostsSlice";
 
-const PostType = ({ active }) => {
+const PostType = ({ active, setActive }) => {
   const [data, setData] = useState(tabGroupData());
-  const [textInputs, setTextInputs] = useState([]);
-  const [addOptionGroup, setAddOptionGroup] = useState([
-    { id: 1, optionName: "", optionInpVals: [] },
-  ]);
-  // Idiotic @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-  console.log(textInputs);
-  // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-  // const [postIsAdded, setPostIsAdded] = useState(false);
-  // const dispatch = useDispatch();
-  // const addPost = () => {
-  //   setPostIsAdded(!postIsAdded);
-  //   let postType = "";
-  //   data.map((item) => {
-  //     if (item.active === true) {
-  //       postType = item.content;
-  //     }
-  //     return item;
-  //   });
-  //   let options = [];
-  //   if (textInputs) {
-  //     textInputs.map((option) => {
-  //       options.push(option.value);
-  //       return option;
-  //     });
-  //   }
-  //   dispatch(postAdded(postType, inputVal, addOptionGroup));
-  //   dispatch(addFavorites(options));
-  //   setAddOptionGroup([]);
-  //   setInputVal("");
-  //   options = [];
-  //   setTextInputs([]);
-  //   setActive(false);
-  // };
-
+  const addPost = () => {
+    setActive(false);
+  };
   return (
     <div
       className={`flex flex-col z-10 absolute left-1/2 transform -translate-x-2/4 ${
@@ -60,22 +26,15 @@ const PostType = ({ active }) => {
           <Avatar size="md" />
           <TabGroup data={data} setData={setData} />
         </div>
-
         {data.map((tab, i) => {
           if (tab.active) {
             switch (tab.content) {
               case "Image Poll":
                 return <ImagePoll key={i} />;
               case "Text Poll":
-                return <TextDefault key={i} setTextInputs={setTextInputs} />;
+                return <TextDefault key={i} />;
               case "Mini survey":
-                return (
-                  <OptionGroup
-                    key={i}
-                    addOptionGroup={addOptionGroup}
-                    setAddOptionGroup={setAddOptionGroup}
-                  />
-                );
+                return <OptionGroup key={i} />;
               default:
                 return tab;
             }
@@ -86,7 +45,7 @@ const PostType = ({ active }) => {
       </div>
       <div className="md:bg-white md:shadow-soft md:rounded-b-md border-b border-grey-shd6 md:border-none flex p-m md:mb-10">
         <div className="flex justify-between w-full">
-          <Footer />
+          <Footer addPost={addPost} />
         </div>
       </div>
       <div className="flex md:hidden p-m mb-10 w-full justify-between">
