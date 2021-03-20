@@ -70,8 +70,7 @@ const OptionGroup = () => {
           click={removeOptionGroupHandler}
           id={box.id}
           groupName={box.optionName}
-          optionName={box.optionName}
-          changed={optionNameHandler}
+          blured={optionNameHandler}
           addOptionGroup={addOptionGroup}
           setAddOptionGroup={setAddOptionGroup}
         />

@@ -15,18 +15,31 @@ const TextDefault = (props) => {
   const dispatch = useDispatch();
   const textPoll = useSelector((state) => state.picklyPosts.postEdit.textPoll);
   useEffect(() => {
-    if (addOptionGroup) {
+    setAddOption(textPoll.favourites);
+    setInputVal(textPoll.postTitle);
+    if (!(addOptionGroup === undefined)) {
       addOptionGroup.map((optionGroup) => {
         if (optionGroup.id.toString() === optionBox.current.id) {
           setAddOption(optionGroup.optionInpVals);
         }
         return optionGroup;
       });
-    } else {
-      setAddOption(textPoll.favourites);
-      setInputVal(textPoll.postTitle);
     }
   }, []);
+  useEffect(() => {
+    if (addOptionGroup === undefined) {
+      dispatch(addTextPollFavourites(addOption));
+    } else {
+      setAddOptionGroup(
+        addOptionGroup.map((optionGroup) => {
+          if (optionGroup.id.toString() === optionBox.current.id) {
+            optionGroup = { ...optionGroup, optionInpVals: addOption };
+          }
+          return optionGroup;
+        })
+      );
+    }
+  }, [addOption]);
   // const alpha = "abcdefghijklmnopqrstuvwxyz".toUpperCase();
   //  Alphabet letters
   const letters = (() => {
@@ -49,22 +62,10 @@ const TextDefault = (props) => {
         if (e.target.id === option.id.toString()) {
           option = { ...option, value: e.target.value };
         }
+        console.log(option);
         return option;
       })
     );
-  };
-  const handleOptionData = () => {
-    if (setAddOptionGroup) {
-      setAddOptionGroup(
-        addOptionGroup.map((optionGroup) => {
-          if (optionGroup.id.toString() === optionBox.current.id) {
-            optionGroup = { ...optionGroup, optionInpVals: addOption };
-          }
-          return optionGroup;
-        })
-      );
-    }
-    dispatch(addTextPollFavourites(addOption));
   };
   return (
     <div className="flex flex-col">
@@ -91,8 +92,7 @@ const TextDefault = (props) => {
               click={removeOptionHandler}
               index={index}
               addOption={addOption}
-              changed={inputValHandler}
-              blured={handleOptionData}
+              blured={inputValHandler}
             />
           );
         })}
