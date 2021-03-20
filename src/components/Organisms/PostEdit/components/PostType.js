@@ -14,7 +14,6 @@ const PostType = ({ active, setActive }) => {
   const addPost = () => {
     setActive(false);
   };
-
   return (
     <div
       className={`flex flex-col z-10 absolute left-1/2 transform -translate-x-2/4 ${

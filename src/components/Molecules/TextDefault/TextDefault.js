@@ -101,5 +101,4 @@ const TextDefault = (props) => {
     </div>
   );
 };
-
 export default TextDefault;

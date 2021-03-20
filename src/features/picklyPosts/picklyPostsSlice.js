@@ -6,7 +6,8 @@ const posts = createSlice({
     postEdit: {
       imagePoll: {
         postTitle: "",
-        imageInfo: { src: [], caption: [] },
+        // imageInfo: { src: [], caption: [] },
+        imagesInfo: [],
       },
       textPoll: {
         postTitle: "",
@@ -45,18 +46,28 @@ const posts = createSlice({
       return state;
     },
     addImagePollImageSrc(state, action) {
-      state.postEdit.imagePoll.imageInfo.src = [
-        ...state.postEdit.imagePoll.imageInfo.src,
+      state.postEdit.imagePoll.imagesInfo = [
+        ...state.postEdit.imagePoll.imagesInfo,
         action.payload,
       ];
       return state;
     },
     addImagePollImageCaption(state, action) {
-      state.postEdit.imagePoll.imageInfo.caption = [
-        ...state.postEdit.imagePoll.imageInfo.caption,
-        action.payload,
-      ];
-      return state;
+      state.postEdit.imagePoll.imagesInfo = state.postEdit.imagePoll.imagesInfo.map(
+        (imgInfo) => {
+          console.log(action.payload.imgCaption);
+          if (imgInfo.imageId === action.payload.imageId) {
+            return { ...imgInfo, imageCaption: action.payload.imgCaption };
+          } else {
+            return imgInfo;
+          }
+        }
+      );
+    },
+    deleteImage(state, action) {
+      state.postEdit.imagePoll.imagesInfo = state.postEdit.imagePoll.imagesInfo.filter(
+        (img) => img.fileUrl !== action.payload.fileUrl
+      );
     },
     addTextPollFavourites(state, action) {
       state.postEdit.textPoll.favourites = action.payload;
@@ -66,6 +77,7 @@ const posts = createSlice({
       state.postEdit.miniSurvey.optionGroup = action.payload;
       return state;
     },
+
     // startPost(state) {
     //   return [
     //     ...state,
@@ -133,6 +145,7 @@ export const {
   addImagePollImageCaption,
   addTextPollFavourites,
   addMiniSurveyOptionGroup,
+  deleteImage,
 } = posts.actions;
 
 export default posts.reducer;

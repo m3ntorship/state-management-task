@@ -1,18 +1,62 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ImageUpload from "../../../Atoms/ImageUpload/ImageUpload";
 import ImagePost from "./ImagePost";
 import conditionalProperties from "classnames";
 import FormInput from "../../../Atoms/FormInput/FormInput";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addImagePollPostTitle } from "../../../../features/picklyPosts/picklyPostsSlice";
 
-const ImagePoll = ({ postIsAdded }) => {
-  const [files, setFIles] = useState([]);
+const ImagePoll = () => {
+  const [files, setFiles] = useState([]);
   const [inputVal, setInputVal] = useState("");
+  const [deletePressed, setDeletePressed] = useState(false);
+  const imagesInfo = useSelector(
+    (state) => state.picklyPosts.postEdit.imagePoll.imagesInfo
+  );
+  const generateRandomID = () => {
+    let randomNumber = Math.random() * 1000000000;
+    let randomID = Math.round(randomNumber);
+    return randomID;
+  };
+  useEffect(() => {
+    if (deletePressed) {
+      setDeletePressed(false);
+      console.log(imagesInfo);
+      // setFiles(
+      //   files.filter((file) => {
+      //     imagesInfo.forEach((imageInfo) => {
+      //       if (imageInfo.imageId === file.imageId) {
+      //         return true
+      //       }
+      //     });
+      //     return false;
+      //   })
+      // );
+    }
+  }, [deletePressed]);
+
   const dispatch = useDispatch();
   const changeHandler = (e) => {
-    setFIles([...e.target.files]);
+    let newUploadedFiles = [...e.target.files];
+    let newUloadedFilesWithId = newUploadedFiles.map((newUploadedFile) => {
+      return { file: newUploadedFile, imageId: `img_${generateRandomID()}` };
+    });
+    // console.log(newUloadedFilesWithId);
+    // let newFiles = newUloadedFilesWithId.filter(({ imageId }) => {
+    //    console.log(imageId);
+    //   for (let i = 0; i < files.length; i++) {
+    //     console.log("imageId: ", imageId);
+    //     console.log(`files[${i}].imageId: ${files[i].imageId}`);
+    //     if (imageId === files[i].imageId) {
+    //       return false;
+    //     }
+    //   }
+    //   return true;
+    // });
+
+    setFiles((prev) => [...prev, ...newUloadedFilesWithId]);
   };
+
   const imgClasses = conditionalProperties(
     "grid-img-upload grid gap-x-2 gap-y-4 rounded-md relative",
     {
@@ -40,9 +84,8 @@ const ImagePoll = ({ postIsAdded }) => {
             <ImagePost
               key={index}
               alpha={letter}
-              id={index}
               file={file}
-              postIsAdded={postIsAdded}
+              setDeletePressed={setDeletePressed}
             />
           );
         })}
