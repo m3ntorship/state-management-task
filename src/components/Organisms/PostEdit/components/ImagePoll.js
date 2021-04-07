@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ImageUpload from "../../../Atoms/ImageUpload/ImageUpload";
 import ImagePost from "./ImagePost";
-// import ImagePostFirst from "./ImagePostFirst";
 import conditionalProperties from "classnames";
 import FormInput from "../../../Atoms/FormInput/FormInput";
 import { useDispatch, useSelector } from "react-redux";

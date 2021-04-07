@@ -62,7 +62,6 @@ const TextDefault = (props) => {
         if (e.target.id === option.id.toString()) {
           option = { ...option, value: e.target.value };
         }
-        // console.log(option);
         return option;
       })
     );

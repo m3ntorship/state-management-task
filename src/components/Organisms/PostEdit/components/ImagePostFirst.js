@@ -35,8 +35,6 @@ const DisplayImagePost = ({
   // Upload Image to server
   return (
     <div className="flex flex-col">
-      {/*
-       */}
       <div className="relative">
         <h2
           className=" w-5 h-5 flex justify-center items-center absolute text-black bg-white rounded-full top-5 right-5 cursor-pointer hover:bg-primary hover:text-white"

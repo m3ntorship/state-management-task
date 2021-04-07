@@ -51,7 +51,6 @@ const ImagePost = ({
     file
   );
   const dispatch = useDispatch();
-  // console.log("ImagePost");
   // Transfrom images to  base64
   useEffect(() => {
     const fileReader = new FileReader();
@@ -86,9 +85,7 @@ const ImagePost = ({
       }
     };
   }, [uploaded]);
-  // Upload Image to server
   useEffect(() => {
-    // console.log("HERE");
     if (progress !== 100) {
       setUploaded(false);
     } else {

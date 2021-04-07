@@ -2,15 +2,11 @@ import React, { useState } from "react";
 import PostType from "./components/PostType";
 import Avatar from "../../Atoms/Avatar/Avatar";
 import FormInput from "../../Atoms/FormInput/FormInput";
-// import { useDispatch } from "react-redux";
-// import { startPost } from "../../../features/picklyPosts/picklyPostsSlice";
 
 const PostEdit = () => {
   const [active, setActive] = useState(false);
-  // const dispatch = useDispatch();
   const inputHandler = () => {
     setActive(true);
-    // dispatch(startPost());
   };
   return (
     <div className="flex justify-center relative">

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Avatar from "../../../Atoms/Avatar/Avatar";
 import TabGroup from "../../TabGroup/TabGroup";
-// import FormInput from "../../../Atoms/FormInput/FormInput";
 import { useDispatch } from "react-redux";
 import { tabGroupData } from "../../TabGroup/data";
 import OptionGroup from "../../../Molecules/OptionGroup/OptionGroup";

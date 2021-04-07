@@ -98,7 +98,6 @@ const posts = createSlice({
           ];
           state.postEdit = postEdit;
           return state;
-        // component = <ViewImagePoll post={post} key={index + 100} />;
         case "Text Poll":
           state.posts = [
             ...state.posts,
@@ -106,7 +105,6 @@ const posts = createSlice({
           ];
           state.postEdit = postEdit;
           return state;
-        // component = <ViewTextPoll post={post} key={index} />;
         case "Mini survey":
           state.posts = [
             ...state.posts,
@@ -114,7 +112,6 @@ const posts = createSlice({
           ];
           state.postEdit = postEdit;
           return state;
-        // component = <ViewMiniSurvey post={post} key={index + 200} />;
         default:
           return;
       }
