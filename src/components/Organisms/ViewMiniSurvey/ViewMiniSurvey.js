@@ -9,7 +9,7 @@ function ViewMiniSurvey({ post }) {
       <div className="bg-white shadow-dark rounded-md flex flex-col items-center p-m mb-10">
         <Header />
         <PostTitle postTitle={post.postTitle} />
-        <MiniSurvey miniSurvey={post.miniSurvey} />
+        <MiniSurvey miniSurvey={post.optionGroup} />
         <Footer />
       </div>
     </div>

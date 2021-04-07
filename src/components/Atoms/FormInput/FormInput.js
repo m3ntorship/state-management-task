@@ -36,11 +36,11 @@ const FormInput = (props) => {
   return (
     <div
       data-testid="nile-input-wrapper"
-      className="flex relative"
+      className="flex relative w-full"
       onClick={hideIconHandler}
     >
       {withLabel ? (
-        <label className="text-xs text-dark-grey font-light mb-xs block">
+        <label className="text-xs  text-dark-grey font-light mb-xs block">
           Label
         </label>
       ) : null}

@@ -2,16 +2,25 @@ import React, { useState } from "react";
 import Avatar from "../../../Atoms/Avatar/Avatar";
 import TabGroup from "../../TabGroup/TabGroup";
 // import FormInput from "../../../Atoms/FormInput/FormInput";
-
+import { useDispatch } from "react-redux";
 import { tabGroupData } from "../../TabGroup/data";
 import OptionGroup from "../../../Molecules/OptionGroup/OptionGroup";
 import ImagePoll from "./ImagePoll";
 import TextDefault from "../../../Molecules/TextDefault/TextDefault";
 import Footer from "../../../Molecules/Footer/Footer";
+import { postAdding } from "../../../../features/picklyPosts/picklyPostsSlice";
 
 const PostType = ({ active, setActive }) => {
   const [data, setData] = useState(tabGroupData());
+  const dispatch = useDispatch();
   const addPost = () => {
+    let postType = "";
+    data.map((tap) => {
+      if (tap.active === true) {
+        postType = tap.content;
+      }
+    });
+    dispatch(postAdding({ type: postType }));
     setActive(false);
   };
   return (

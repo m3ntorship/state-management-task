@@ -19,12 +19,14 @@ const PostEdit = () => {
         <FormInput withLabel={false} clickHandler={inputHandler} />
       </div>
       {active ? (
-        <div
-          className="absolute top-0 left-0 w-full h-screen bg-dark bg-opacity-50"
-          onClick={() => setActive(false)}
-        ></div>
+        <>
+          <div
+            className="absolute top-0 left-0 w-full h-screen bg-dark bg-opacity-50"
+            onClick={() => setActive(false)}
+          ></div>
+          <PostType active={active} setActive={setActive} />
+        </>
       ) : null}
-      <PostType active={active} setActive={setActive} />
     </div>
   );
 };

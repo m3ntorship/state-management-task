@@ -18,7 +18,7 @@ const Input = (props) => {
   } = props;
 
   const inputClasses = conditionalProperties(
-    "w-33xl py-2.5 pr-m placeholder-grey-shd1 text-sm text-dark-grey font-normal border rounded-md hover:border-grey-shd2 focus:text-dark focus:outline-none",
+    "w-full py-2.5 pr-m placeholder-grey-shd1 text-sm text-dark-grey font-normal border rounded-md hover:border-grey-shd2 focus:text-dark focus:outline-none",
     {
       "pl-9": leftIcon && !rightIcon,
       "pl-m": (leftIcon && rightIcon) || (!leftIcon && !prefixDrop),

@@ -79,6 +79,13 @@ const ImagePost = ({
       );
     }
   }, [fileUrl]);
+  useEffect(() => {
+    return () => {
+      if (!uploaded) {
+        setUploaded(true);
+      }
+    };
+  }, [uploaded]);
   // Upload Image to server
   useEffect(() => {
     // console.log("HERE");

@@ -12,7 +12,6 @@ function TextPoll({ favourites = [] }) {
         return (
           <OptionOfSurvey
             optionsInpVal={optionsInpVal}
-            index={index}
             alpha={letter}
             key={letter}
           />

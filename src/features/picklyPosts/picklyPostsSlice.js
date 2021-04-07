@@ -1,35 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-const posts = createSlice({
-  name: "posts",
-  initialState: {
-    postEdit: {
-      imagePoll: {
-        postTitle: "",
-        // imageInfo: { src: [], caption: [] },
-        imagesInfo: [],
-      },
-      textPoll: {
-        postTitle: "",
-        favourites: [
+const postEdit = {
+  imagePoll: {
+    postTitle: "",
+    imagesInfo: [],
+  },
+  textPoll: {
+    postTitle: "",
+    favourites: [
+      { id: 1, value: "" },
+      { id: 2, value: "" },
+    ],
+  },
+  miniSurvey: {
+    postTitle: "",
+    optionGroup: [
+      {
+        id: 1,
+        optionName: "",
+        optionInpVals: [
           { id: 1, value: "" },
           { id: 2, value: "" },
         ],
       },
-      miniSurvey: {
-        postTitle: "",
-        optionGroup: [
-          {
-            id: 1,
-            optionName: "",
-            optionInpVals: [
-              { id: 1, value: "" },
-              { id: 2, value: "" },
-            ],
-          },
-        ],
-      },
-    },
+    ],
+  },
+};
+const posts = createSlice({
+  name: "posts",
+  initialState: {
+    postEdit: postEdit,
     posts: [],
   },
   reducers: {
@@ -90,63 +89,36 @@ const posts = createSlice({
       state.postEdit.miniSurvey.optionGroup = action.payload;
       return state;
     },
-
-    // startPost(state) {
-    //   return [
-    //     ...state,
-    //     {
-    //       type: "",
-    //       postTitle: "",
-    //       fileUrls: [],
-    //       imageCaptions: [],
-    //       favorites: [],
-    //       miniSurvey: [],
-    //     },
-    //   ];
-    // },
-    // addImages: {
-    //   reducer: (state, { payload: { fileUrls, imageCaption } }) => {
-    //     const stateLen = state.length;
-    //     state.map((post, i) => {
-    //       if (stateLen === i + 1) {
-    //         post.fileUrls = [...post.fileUrls, fileUrls];
-    //         post.imageCaptions = [...post.imageCaptions, imageCaption];
-    //       }
-    //       return post;
-    //     });
-    //     return state;
-    //   },
-    //   prepare: (fileUrls, imageCaption) => {
-    //     return { payload: { fileUrls, imageCaption } };
-    //   },
-    // },
-    // addFavorites(state, action) {
-    //   const stateLen = state.length;
-    //   state.map((post, i) => {
-    //     if (stateLen === i + 1) {
-    //       post.favorites = action.payload;
-    //     }
-    //     return post;
-    //   });
-    //   return state;
-    // },
-    // postAdded: {
-    //   reducer: (state, action) => {
-    //     const stateLen = state.length;
-    //     state.map((post, i) => {
-    //       if (stateLen === i + 1) {
-    //         post.type = action.payload.type;
-    //         post.postTitle = action.payload.postTitle;
-    //         post.miniSurvey = action.payload.miniSurvey;
-    //       }
-    //       return post;
-    //     });
-    //     return state;
-    //   },
-    //   prepare: (type, postTitle, miniSurvey) => {
-    //     return { payload: { type, postTitle, miniSurvey } };
-    //   },
-    // },
+    postAdding(state, { payload }) {
+      switch (payload.type) {
+        case "Image Poll":
+          state.posts = [
+            ...state.posts,
+            { data: state.postEdit.imagePoll, postType: payload.type },
+          ];
+          state.postEdit = postEdit;
+          return state;
+        // component = <ViewImagePoll post={post} key={index + 100} />;
+        case "Text Poll":
+          state.posts = [
+            ...state.posts,
+            { data: state.postEdit.textPoll, postType: payload.type },
+          ];
+          state.postEdit = postEdit;
+          return state;
+        // component = <ViewTextPoll post={post} key={index} />;
+        case "Mini survey":
+          state.posts = [
+            ...state.posts,
+            { data: state.postEdit.miniSurvey, postType: payload.type },
+          ];
+          state.postEdit = postEdit;
+          return state;
+        // component = <ViewMiniSurvey post={post} key={index + 200} />;
+        default:
+          return;
+      }
+    },
   },
 });
 
@@ -160,6 +132,7 @@ export const {
   addMiniSurveyOptionGroup,
   deleteImage,
   imageUploaded,
+  postAdding,
 } = posts.actions;
 
 export default posts.reducer;

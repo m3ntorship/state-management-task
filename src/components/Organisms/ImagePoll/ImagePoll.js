@@ -10,7 +10,7 @@ const ViewImagePoll = ({ post }) => {
       <div className=" bg-white shadow-dark rounded-md flex flex-col items-center p-m mb-10">
         <Header />
         <PostTitle postTitle={post.postTitle} />
-        <ImagePoll fileUrls={post.fileUrls} label={post.imageCaptions} />
+        <ImagePoll imagesInfo={post.imagesInfo} />
         <Footer />
       </div>
     </div>

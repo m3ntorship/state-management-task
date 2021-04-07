@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addImagePollImageCaption } from "../../../../features/picklyPosts/picklyPostsSlice";
-
+import classnames from "classnames";
 // return data, progress, uploaded
 const DisplayImagePost = ({
   alpha,
@@ -28,10 +28,10 @@ const DisplayImagePost = ({
       setImgCaption(imageCaption);
     }
   }, [file]);
-  // console.log("First");
-  // console.log("fileHere: ", file);
-
-  // useEffect(() => {}, []);
+  const imgStyle = classnames("object-cover", {
+    "w-full max-h-96": imagesNumber === 1,
+    "w-96 h-72": imagesNumber !== 1,
+  });
   // Upload Image to server
   return (
     <div className="flex flex-col">
@@ -47,13 +47,7 @@ const DisplayImagePost = ({
           <span>x</span>
         </h2>
 
-        <img
-          src={fileUrl}
-          alt="fashion"
-          className={`${
-            imagesNumber === 1 ? "w-full max-h-96" : "md:w-96 h-72"
-          } `}
-        />
+        <img src={fileUrl} alt="fashion" className={imgStyle} />
       </div>
 
       <div className="relative mt-xxs">
