@@ -55,9 +55,22 @@ const posts = createSlice({
     addImagePollImageCaption(state, action) {
       state.postEdit.imagePoll.imagesInfo = state.postEdit.imagePoll.imagesInfo.map(
         (imgInfo) => {
-          console.log(action.payload.imgCaption);
           if (imgInfo.imageId === action.payload.imageId) {
-            return { ...imgInfo, imageCaption: action.payload.imgCaption };
+            return {
+              ...imgInfo,
+              imageCaption: action.payload.imgCaption,
+            };
+          } else {
+            return imgInfo;
+          }
+        }
+      );
+    },
+    imageUploaded(state, action) {
+      state.postEdit.imagePoll.imagesInfo = state.postEdit.imagePoll.imagesInfo.map(
+        (imgInfo) => {
+          if (imgInfo.imageId === action.payload.imageId) {
+            return { ...imgInfo, imageUploaded: true };
           } else {
             return imgInfo;
           }
@@ -66,7 +79,7 @@ const posts = createSlice({
     },
     deleteImage(state, action) {
       state.postEdit.imagePoll.imagesInfo = state.postEdit.imagePoll.imagesInfo.filter(
-        (img) => img.fileUrl !== action.payload.fileUrl
+        (img) => img.imageId !== action.payload.imageId
       );
     },
     addTextPollFavourites(state, action) {
@@ -146,6 +159,7 @@ export const {
   addTextPollFavourites,
   addMiniSurveyOptionGroup,
   deleteImage,
+  imageUploaded,
 } = posts.actions;
 
 export default posts.reducer;
