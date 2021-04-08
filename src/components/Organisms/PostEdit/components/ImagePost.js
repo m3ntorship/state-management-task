@@ -4,7 +4,6 @@ import Progress from "../../../Atoms/Progress/Progress";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addImagePollImageSrc,
-  addImagePollImageCaption,
   imageUploaded,
 } from "../../../../features/picklyPosts/picklyPostsSlice";
 
@@ -28,26 +27,20 @@ const useCloudinaryUploader = (file) => {
       .then((res) => {
         const data = res.data;
         setResponse(data);
-        setUploaded(true);
       })
       .catch(console.error);
   }, [file]);
   return { response, progress, uploaded, setUploaded };
 };
 // return data, progress, uploaded
-const ImagePost = ({
-  alpha,
-  file: { file, imageId },
-  handleDelete,
-  imagesNumber,
-}) => {
+const ImagePost = ({ file: { file, imageId } }) => {
   // States
   const imagesState = useSelector(
     (state) => state.picklyPosts.postEdit.imagePoll.imagesInfo
   );
   const [fileUrl, setFileUrl] = useState("");
-  const [imgCaption, setImgCaption] = useState("");
-  const { progress, uploaded, setUploaded, response } = useCloudinaryUploader(
+  // const [imgCaption, setImgCaption] = useState("");
+  const { progress, response, uploaded, setUploaded } = useCloudinaryUploader(
     file
   );
   const dispatch = useDispatch();
@@ -95,46 +88,7 @@ const ImagePost = ({
   }, [response]);
   return (
     <div className="flex flex-col">
-      {uploaded ? (
-        <>
-          <img
-            src={fileUrl}
-            alt="fashion"
-            className={`${
-              imagesNumber === 1 ? "max-w-96   max-h-96" : "md:w-96 h-72"
-            } `}
-          />
-          <div className="relative mt-xxs">
-            <input
-              className="hover:border-grey-shd2 focus:text-dark-grey focus:border-dark border border-grey-shd5 bg-transparent md:bg-white py-2.5 pr-m pl-11 text-sm font-normal text-grey-shd1 w-full rounded-b-md focus:outline-none"
-              type="text"
-              onChange={(e) => setImgCaption(e.target.value)}
-              value={imgCaption}
-              onBlur={() =>
-                dispatch(addImagePollImageCaption({ imgCaption, imageId }))
-              }
-              placeholder="Type caption (optional)"
-            />
-            <div className="bg-grey-shd7 py-0.5 px-xs rounded-sm absolute top-2 left-2">
-              <h3 className="text-sm text-grey font-normal leading-snug">
-                {alpha}
-              </h3>
-            </div>
-          </div>
-          <button
-            onClick={() => {
-              handleDelete(imageId);
-            }}
-            className="bg-primary cursor-pointer"
-          >
-            Delete
-          </button>
-        </>
-      ) : (
-        <div className="h-64 flex items-center">
-          <Progress row progress={progress} />
-        </div>
-      )}
+      {!uploaded && <Progress row progress={progress} />}
     </div>
   );
 };
