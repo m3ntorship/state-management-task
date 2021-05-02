@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-const OptionInput = ({ id, alpha, click, index, addOption, changed }) => {
+const OptionInput = (props) => {
+  const { id, alpha, click, index, addOption, value, blured } = props;
+  const [inpVal, setInpVal] = useState("");
+  useEffect(() => {
+    setInpVal(value);
+  }, []);
   return (
     <div className="mb-xs flex items-center w-full">
       <svg
@@ -15,11 +20,13 @@ const OptionInput = ({ id, alpha, click, index, addOption, changed }) => {
       </svg>
       <div className="relative w-full">
         <input
-          className="hover:border-grey-shd2 focus:text-dark-grey focus:border-dark border border-grey-shd5 bg-transparent md:bg-white py-2.5 pr-m pl-11 text-sm font-normal text-grey-shd1 w-full rounded-md focus:outline-none"
+          className="hover:border-grey-shd2 focus:text-dark focus:border-dark border border-grey-shd5 bg-transparent md:bg-white py-2.5 pr-m pl-11 text-sm font-normal text-dark-grey w-full rounded-md focus:outline-none"
           type="text"
           placeholder={`Option ${index + 1}`}
+          value={inpVal}
           id={id}
-          onChange={changed}
+          onChange={(e) => setInpVal(e.target.value)}
+          onBlur={blured}
         />
         <div className="bg-grey-shd7 py-0.5 px-xs rounded-sm absolute top-2 left-2">
           <h3 className="text-sm text-grey font-normal leading-snug">

@@ -1,17 +1,21 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import TextDefault from "../../TextDefault/TextDefault";
 
 const OptionGroupBox = (props) => {
   const {
     click,
     id,
-    changed,
+    blured,
     groupName,
     addOptionGroup,
     setAddOptionGroup,
   } = props;
   const [inputChecked, setInputChecked] = useState(false);
+  const [inpVal, setInpVal] = useState("");
   const optionBox = useRef();
+  useEffect(() => {
+    setInpVal(groupName);
+  }, []);
   return (
     <div
       className="misc-box flex flex-col bg-grey-bg p-m mb-xs rounded-md"
@@ -20,12 +24,14 @@ const OptionGroupBox = (props) => {
     >
       <div className="flex items-center justify-between mb-m">
         <input
-          className={`font-normal text-sm text-dark placeholder-dark focus:outline-none bg-accent-shd7 ${
+          className={`font-normal w-full rounded-md px-2 py-0.5 text-sm text-dark placeholder-dark focus:outline-none bg-accent-shd7 ${
             inputChecked ? "hidden" : "inline-block"
           }`}
           type="text"
-          placeholder="Typing a new group name here|"
-          onChange={changed}
+          placeholder="Typing a new group name here"
+          onChange={(e) => setInpVal(e.target.value)}
+          value={inpVal}
+          onBlur={blured}
           id={id}
         />
         <h3

@@ -1,13 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import AddOption from "./components/AddOption";
 import OptionInput from "./components/OptionInput";
+import FormInput from "../../Atoms/FormInput/FormInput";
+import {
+  addTextPollFavourites,
+  addTextPollPostTitle,
+} from "../../../features/picklyPosts/picklyPostsSlice";
 
 const TextDefault = (props) => {
-  const [addOption, setAddOption] = useState([
-    { id: 1, value: "" },
-    { id: 2, value: "" },
-  ]);
-  const { setTextInputs, addOptionGroup, setAddOptionGroup, optionBox } = props;
+  const { addOptionGroup, setAddOptionGroup, optionBox } = props;
+  const [addOption, setAddOption] = useState([]);
+  const [inputVal, setInputVal] = useState("");
+  const dispatch = useDispatch();
+  const textPoll = useSelector((state) => state.picklyPosts.postEdit.textPoll);
+  useEffect(() => {
+    setAddOption(textPoll.favourites);
+    setInputVal(textPoll.postTitle);
+    if (!(addOptionGroup === undefined)) {
+      addOptionGroup.map((optionGroup) => {
+        if (optionGroup.id.toString() === optionBox.current.id) {
+          setAddOption(optionGroup.optionInpVals);
+        }
+        return optionGroup;
+      });
+    }
+  }, []);
+  useEffect(() => {
+    if (addOptionGroup === undefined) {
+      dispatch(addTextPollFavourites(addOption));
+    } else {
+      setAddOptionGroup(
+        addOptionGroup.map((optionGroup) => {
+          if (optionGroup.id.toString() === optionBox.current.id) {
+            optionGroup = { ...optionGroup, optionInpVals: addOption };
+          }
+          return optionGroup;
+        })
+      );
+    }
+  }, [addOption]);
   // const alpha = "abcdefghijklmnopqrstuvwxyz".toUpperCase();
   //  Alphabet letters
   const letters = (() => {
@@ -15,7 +47,7 @@ const TextDefault = (props) => {
     return caps;
   })();
   const addOptionHandler = () => {
-    const numbers = "123456789";
+    const numbers = "1000";
     const randId = Math.floor(Math.random() * numbers);
     setAddOption([...addOption, { id: randId, value: "" }]);
   };
@@ -25,32 +57,28 @@ const TextDefault = (props) => {
     );
   };
   const inputValHandler = (e) => {
-    let inpuVals = [];
     setAddOption(
       addOption.map((option) => {
         if (e.target.id === option.id.toString()) {
-          option.value = e.target.value;
+          option = { ...option, value: e.target.value };
         }
-        inpuVals.push(option.value);
         return option;
       })
     );
-    if (setTextInputs) {
-      setTextInputs(addOption);
-    }
-    if (setAddOptionGroup) {
-      setAddOptionGroup(
-        addOptionGroup.map((optionGroup) => {
-          if (optionGroup.id === optionBox.current.id) {
-            optionGroup.optionInpVals = inpuVals;
-          }
-          return optionGroup;
-        })
-      );
-    }
   };
   return (
     <div className="flex flex-col">
+      {!addOptionGroup && (
+        <div className="mb-m">
+          <FormInput
+            withLabel={false}
+            inputVal={inputVal}
+            setInputVal={setInputVal}
+            changed={(e) => setInputVal(e.target.value)}
+            blur={() => dispatch(addTextPollPostTitle(inputVal))}
+          />
+        </div>
+      )}
       <div className="flex flex-col w-full">
         {addOption.map((item, index) => {
           const letter = letters[index];
@@ -59,10 +87,11 @@ const TextDefault = (props) => {
               key={item.id}
               id={item.id}
               alpha={letter}
+              value={item.value}
               click={removeOptionHandler}
               index={index}
               addOption={addOption}
-              changed={inputValHandler}
+              blured={inputValHandler}
             />
           );
         })}
@@ -71,5 +100,4 @@ const TextDefault = (props) => {
     </div>
   );
 };
-
 export default TextDefault;

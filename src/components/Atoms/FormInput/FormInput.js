@@ -16,10 +16,13 @@ const FormInput = (props) => {
     prefixDrop = false,
     clickHandler = () => {},
     placeholder = "What do you want to ask about?",
+    inputVal = "",
+    setInputVal = () => {},
+    changed = () => {},
+    blur = () => {},
   } = props;
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
-  const [inputVal, setInputVal] = useState("");
   const hideIconHandler = (e) => {
     setFocus(false);
     e.stopPropagation();
@@ -33,11 +36,11 @@ const FormInput = (props) => {
   return (
     <div
       data-testid="nile-input-wrapper"
-      className="flex relative"
+      className="flex relative w-full"
       onClick={hideIconHandler}
     >
       {withLabel ? (
-        <label className="text-xs text-dark-grey font-light mb-xs block">
+        <label className="text-xs  text-dark-grey font-light mb-xs block">
           Label
         </label>
       ) : null}
@@ -54,6 +57,8 @@ const FormInput = (props) => {
         variant={variant}
         disabled={disabled}
         click={showIconHandler}
+        changed={changed}
+        blur={blur}
         setHover={setHover}
         placeholder={placeholder}
         setInputVal={setInputVal}
@@ -66,6 +71,7 @@ const FormInput = (props) => {
         leftIcon={leftIcon}
         withLabel={withLabel}
         setInputVal={setInputVal}
+        inputVal={inputVal}
       />
       <SideIcons
         rightIcon={rightIcon}

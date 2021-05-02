@@ -7,7 +7,7 @@ const ImageUpload = ({ changed }) => {
         type="file"
         name="file"
         id="file"
-        className="opacity-0 overflow-hidden absolute"
+        className="hidden"
         multiple
         onChange={changed}
       />

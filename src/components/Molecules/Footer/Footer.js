@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../../Atoms/Button/Button";
 import Toggle from "../../Atoms/Toggle/Toggle";
 
-const Footer = () => {
+const Footer = ({ addPost }) => {
   return (
     <>
       <div className="flex items-center justify-between w-full md:w-auto">
@@ -26,7 +26,9 @@ const Footer = () => {
           ></path>
         </svg>
       </div>
-      <Button size="sm">Post</Button>
+      <Button size="sm" addPost={addPost}>
+        Post
+      </Button>
     </>
   );
 };

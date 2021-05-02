@@ -2,13 +2,21 @@ import React from "react";
 import conditionalProperties from "classnames";
 
 const Variants = (props) => {
-  const { variant, focus, rightIcon, leftIcon, withLabel, setInputVal } = props;
+  const {
+    variant,
+    focus,
+    rightIcon,
+    leftIcon,
+    withLabel,
+    setInputVal,
+    inputVal,
+  } = props;
   const SvgIcon = conditionalProperties("absolute block cursor-pointer", {
     "top-9": withLabel,
     "top-3": !withLabel,
     "right-10": rightIcon && !leftIcon,
     "right-3": !rightIcon || (!rightIcon && leftIcon),
-    hidden: !focus,
+    hidden: !focus || !inputVal,
   });
   return (
     <>

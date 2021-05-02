@@ -4,7 +4,7 @@ const AddOption = ({ click }) => {
   return (
     <div className="misc-box flex items-center bg-grey-bg p-m rounded-md">
       <svg
-        className="mr-xxs cursor-pointer"
+        className=" cursor-pointer"
         width="16"
         height="16"
         viewBox="0 0 16 16"
@@ -17,7 +17,12 @@ const AddOption = ({ click }) => {
           fill="#5B6366"
         />
       </svg>
-      <h3 className="font-medium text-sm text-dark-grey">Add Option Group</h3>
+      <h3
+        className="pl-xxs font-medium text-sm text-dark-grey cursor-pointer"
+        onClick={click}
+      >
+        Add Option Group
+      </h3>
     </div>
   );
 };
