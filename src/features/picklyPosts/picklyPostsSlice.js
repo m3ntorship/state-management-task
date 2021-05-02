@@ -32,16 +32,9 @@ const posts = createSlice({
     posts: [],
   },
   reducers: {
+    // image poll reducers
     addImagePollPostTitle(state, action) {
       state.postEdit.imagePoll.postTitle = action.payload;
-      return state;
-    },
-    addTextPollPostTitle(state, action) {
-      state.postEdit.textPoll.postTitle = action.payload;
-      return state;
-    },
-    addMiniSurveyPostTitle(state, action) {
-      state.postEdit.miniSurvey.postTitle = action.payload;
       return state;
     },
     addImagePollImageSrc(state, action) {
@@ -57,11 +50,10 @@ const posts = createSlice({
           if (imgInfo.imageId === action.payload.imageId) {
             return {
               ...imgInfo,
-              imageCaption: action.payload.imgCaption,
+              imageCaption: action.payload.imageCaption,
             };
-          } else {
-            return imgInfo;
           }
+          return imgInfo;
         }
       );
     },
@@ -78,13 +70,24 @@ const posts = createSlice({
     },
     deleteImage(state, action) {
       state.postEdit.imagePoll.imagesInfo = state.postEdit.imagePoll.imagesInfo.filter(
-        (img) => img.imageId !== action.payload.imageId
+        (img) => img.imageId !== action.payload.id
       );
+    },
+    // text poll reducers
+    addTextPollPostTitle(state, action) {
+      state.postEdit.textPoll.postTitle = action.payload;
+      return state;
     },
     addTextPollFavourites(state, action) {
       state.postEdit.textPoll.favourites = action.payload;
       return state;
     },
+    addMiniSurveyPostTitle(state, action) {
+      state.postEdit.miniSurvey.postTitle = action.payload;
+      return state;
+    },
+    // mini survey reducers
+
     addMiniSurveyOptionGroup(state, action) {
       state.postEdit.miniSurvey.optionGroup = action.payload;
       return state;
@@ -93,22 +96,22 @@ const posts = createSlice({
       switch (payload.type) {
         case "Image Poll":
           state.posts = [
-            ...state.posts,
             { data: state.postEdit.imagePoll, postType: payload.type },
+            ...state.posts,
           ];
           state.postEdit = postEdit;
           return state;
         case "Text Poll":
           state.posts = [
-            ...state.posts,
             { data: state.postEdit.textPoll, postType: payload.type },
+            ...state.posts,
           ];
           state.postEdit = postEdit;
           return state;
         case "Mini survey":
           state.posts = [
-            ...state.posts,
             { data: state.postEdit.miniSurvey, postType: payload.type },
+            ...state.posts,
           ];
           state.postEdit = postEdit;
           return state;

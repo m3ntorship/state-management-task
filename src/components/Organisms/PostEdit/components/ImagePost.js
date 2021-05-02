@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Progress from "../../../Atoms/Progress/Progress";
-import { useDispatch, useSelector } from "react-redux";
 import {
   addImagePollImageSrc,
+  addImagePollImageCaption,
   imageUploaded,
 } from "../../../../features/picklyPosts/picklyPostsSlice";
+import { useDispatch } from "react-redux";
+import classnames from "classnames";
 
 const useCloudinaryUploader = (file) => {
   const [response, setResponse] = useState({});
@@ -27,68 +29,121 @@ const useCloudinaryUploader = (file) => {
       .then((res) => {
         const data = res.data;
         setResponse(data);
+        setUploaded(true);
       })
       .catch(console.error);
   }, [file]);
   return { response, progress, uploaded, setUploaded };
 };
 // return data, progress, uploaded
-const ImagePost = ({ file: { file, imageId } }) => {
+const ImagePost = ({
+  alpha,
+  file: { imageId, file },
+  deleteHandler,
+  fileSrc,
+  captionValue,
+  imagesNumber,
+  // imagePoll,
+}) => {
   // States
-  const imagesState = useSelector(
-    (state) => state.picklyPosts.postEdit.imagePoll.imagesInfo
-  );
   const [fileUrl, setFileUrl] = useState("");
-  // const [imgCaption, setImgCaption] = useState("");
-  const { progress, response, uploaded, setUploaded } = useCloudinaryUploader(
-    file
-  );
+  const { progress, uploaded } = !fileSrc && useCloudinaryUploader(file);
+  const [uploadeds, setUploadeds] = useState(false);
+  const [deleteClick, setDeleteClick] = useState(false);
+  const [captionVal, setCaptionVal] = useState("");
   const dispatch = useDispatch();
-  // Transfrom images to  base64
+
+  !fileSrc &&
+    useEffect(() => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.addEventListener("load", function (e) {
+        setFileUrl(e.target.result);
+      });
+    }, [file]);
+
   useEffect(() => {
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-    fileReader.addEventListener("load", function (e) {
-      setFileUrl(e.target.result);
-    });
-  }, [file]);
-  useEffect(() => {
-    let alreadyuploaded = false;
-    imagesState.forEach((image) => {
-      if (image.imageId === imageId) {
-        alreadyuploaded = true;
-      }
-    });
-    if (fileUrl && !alreadyuploaded) {
-      alreadyuploaded = false;
+    if (fileUrl && !deleteClick) {
       dispatch(
         addImagePollImageSrc({
-          fileUrl,
           imageId,
           imageCaption: "",
           imageUploaded: false,
+          fileUrl,
         })
       );
     }
   }, [fileUrl]);
   useEffect(() => {
+    dispatch(imageUploaded({ imageId }));
     return () => {
       if (!uploaded) {
-        setUploaded(true);
+        setUploadeds(true);
       }
     };
   }, [uploaded]);
-  useEffect(() => {
-    if (progress !== 100) {
-      setUploaded(false);
-    } else {
-      dispatch(imageUploaded({ imageId }));
-      setUploaded(true);
-    }
-  }, [response]);
+  const imgStyle = classnames("object-cover", {
+    "w-full max-h-96": imagesNumber === 1,
+    "w-96 h-72": imagesNumber !== 1,
+  });
   return (
     <div className="flex flex-col">
-      {!uploaded && <Progress row progress={progress} />}
+      {uploadeds || fileSrc ? (
+        <>
+          <div className="relative">
+            <h2
+              className=" w-5 h-5 flex justify-center items-center absolute text-black bg-white rounded-full top-5 right-5 cursor-pointer hover:bg-primary hover:text-white"
+              onClick={() => {
+                deleteHandler(imageId);
+                setDeleteClick(true);
+              }}
+            >
+              <span>x</span>
+            </h2>
+            {fileSrc ? (
+              <img
+                src={fileSrc}
+                alt="fashion"
+                width="344"
+                className={imgStyle}
+              />
+            ) : (
+              <img
+                src={fileUrl}
+                alt="fashion"
+                width="344"
+                className={imgStyle}
+              />
+            )}
+          </div>
+          <div className="relative mt-xxs">
+            <input
+              className="hover:border-grey-shd2 focus:text-dark-grey focus:border-dark border border-grey-shd5 bg-transparent md:bg-white py-2.5 pr-m pl-11 text-sm font-normal text-grey-shd1 w-full rounded-b-md focus:outline-none"
+              type="text"
+              placeholder="Type caption (optional)"
+              value={captionValue ? captionValue : captionVal}
+              onChange={(e) => setCaptionVal(e.target.value)}
+              onBlur={() => {
+                dispatch(
+                  addImagePollImageCaption({
+                    imageId,
+                    imageCaption: captionVal,
+                  })
+                );
+              }}
+            />
+            <div className="bg-grey-shd7 py-0.5 px-xs rounded-sm absolute top-2 left-2">
+              <h3 className="text-sm text-grey font-normal leading-snug">
+                {alpha}
+              </h3>
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className="h-64 flex items-center">
+          <Progress row progress={progress} />
+        </div>
+      )}
     </div>
   );
 };
